@@ -1,0 +1,9 @@
+1. 
+Kalman smoothing did better in my practice as it shows the fluctuates more clear than LOESS did. 
+By reducing the frac value of LOESS more detail can be shown. When I reduce the frac value to 0.01, the result comes to show some details of temperature shifting. But when comparing to the result of Kalman smoothing, Kalman smoothing is more sensitive to the fluctuates as the line moves up and down more rapiddly.
+
+
+
+2. 
+The data of course can help predict the direction of moving and eliminate the inaccuracy on vertical axis of moving direction. The data of speed can help predict the distance of moving in unit time period. 
+

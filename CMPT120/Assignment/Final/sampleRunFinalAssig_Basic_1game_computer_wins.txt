@@ -1,0 +1,135 @@
+CMPT 120
+Instructor: Diana Cukierman
+Game Flipping Dance
+Sample Run
+
+Basic level (1)
+In this game the computer wins
+======================================================================
+
+Would  you like to play again? (y/n): ==> y
+
+Which level would you like to play?
+ 1 - Basic, user only,
+ 2 - Advanced, user and computer, 
+ 3 - Expert, user and computer: ==> 1
+
+Which digit/color would you like for you?
+ 0 - white,
+ 1 - black: ==> 1
+
+Size of board (between 3 and 6 inclusive): ==> 6
+
+The board is
+-------------
+
+(initial board)
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	Col 5	
+Row 0		 1	 0	 0	 0	 1	 1
+Row 1		 0	 1	 0	 1	 1	 1
+Row 2		 0	 1	 0	 1	 0	 0
+Row 3		 1	 0	 1	 1	 1	 0
+Row 4		 1	 1	 1	 1	 0	 0
+Row 5		 1	 0	 0	 0	 1	 1
+
+User, what position are you choosing to flip? (max flips = 6)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 5): 0
+col?  (<= 5): 0
+
+The board is
+-------------
+
+(after user played (0, 0))
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	Col 5	
+Row 0		 0	 0	 0	 0	 1	 1
+Row 1		 0	 1	 0	 1	 1	 1
+Row 2		 0	 1	 0	 1	 0	 0
+Row 3		 1	 0	 1	 1	 1	 0
+Row 4		 1	 1	 1	 1	 0	 0
+Row 5		 1	 0	 0	 0	 1	 1
+
+User, what position are you choosing to flip? (max flips = 6)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 5): 4
+col?  (<= 5): 2
+
+The board is
+-------------
+
+(after user played (4, 2))
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	Col 5	
+Row 0		 0	 0	 0	 0	 1	 1
+Row 1		 0	 1	 0	 1	 1	 1
+Row 2		 0	 1	 0	 1	 0	 0
+Row 3		 1	 0	 1	 1	 1	 0
+Row 4		 1	 1	 0	 1	 0	 0
+Row 5		 1	 0	 0	 0	 1	 1
+
+User, what position are you choosing to flip? (max flips = 6)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 5): 3
+col?  (<= 5): 4
+
+The board is
+-------------
+
+(after user played (3, 4))
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	Col 5	
+Row 0		 0	 0	 0	 0	 1	 1
+Row 1		 0	 1	 0	 1	 1	 1
+Row 2		 0	 1	 0	 1	 0	 0
+Row 3		 1	 0	 1	 1	 0	 0
+Row 4		 1	 1	 0	 1	 0	 0
+Row 5		 1	 0	 0	 0	 1	 1
+
+User, what position are you choosing to flip? (max flips = 6)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 5): 0
+col?  (<= 5): 3
+
+The board is
+-------------
+
+(after user played (0, 3))
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	Col 5	
+Row 0		 0	 0	 0	 1	 1	 1
+Row 1		 0	 1	 0	 1	 1	 1
+Row 2		 0	 1	 0	 1	 0	 0
+Row 3		 1	 0	 1	 1	 0	 0
+Row 4		 1	 1	 0	 1	 0	 0
+Row 5		 1	 0	 0	 0	 1	 1
+
+User, what position are you choosing to flip? (max flips = 6)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 5): 99
+col?  (<= 5): 99
+
+This game is over because you did not want to flip again!
+
+Rows that have an even number of user digit's (1)
+
+ - Row 1
+ - Row 2
+
+Cols that have an even number of user digit's (1)
+
+ -  None of the Cols
+
+
+Sorry!  for you to win, the board had to have at least 
+one row and one col with an even number of your digit
+but such is not the case; You had chosen digit 1
+Therefore, I, the computer, win this game!
+
+Would  you like to play again? (y/n): ==>

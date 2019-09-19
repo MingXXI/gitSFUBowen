@@ -1,0 +1,7 @@
+Student Name: Bowen Wang
+Student ID: 301267523
+
+Statement:
+	I finished this assignment(assignment No.5) on my own.
+
+	This turtle practice draws a picture of Captain Amarica's shield with a hat on the top.

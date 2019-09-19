@@ -1,0 +1,498 @@
+---
+title: "CMPT 318 - Final Project"
+author: "Group 10"
+date: "November 25, 2018"
+output: html_document
+---
+
+## Data preprocessing and reading in Datasets
+```{r}
+library("depmixS4")
+library(lubridate)
+library(TTR)
+library(ggplot2)
+
+# Function to get Sunday mornings and nights
+getSundayMorningsAndNights <- function (Dataset, na.rm = FALSE) {
+  dates <- as.POSIXlt(Dataset$Date, na.rm = T, format = "%d/%m/%Y") # get date format
+  Dataset$Day <- weekdays(as.Date(dates)) # add corresponding days to the dataset
+  sunday <- Dataset$Day == "Sunday"
+  monday <- Dataset$Day == "Monday"
+  times <- format(Dataset$Time, na.rm = T, format = "%H:%M:%S")
+  sundayMorningsAndNights <- list()
+  sundayMorningsAndNights$sundayMornings <- subset(Dataset, sunday & times >= "08:00:00" & times <= "11:00:00")
+  sundayMorningsAndNights$sundayNights <- subset(Dataset, (sunday & times >= "21:00:00" & times <= "23:59:00") | (monday & times == "00:00:00"))
+  return(sundayMorningsAndNights)
+}
+
+###############################################
+
+# Get the training and testing datasets
+TrainData <- read.table("Train Data.txt", header = TRUE, sep = ",")
+Test1 <- read.table("Test1.txt", header = TRUE, sep = ",")
+Test2 <- read.table("Test2.txt", header = TRUE, sep = ",")
+Test3 <- read.table("Test3.txt", header = TRUE, sep = ",")
+Test4 <- read.table("Test4.txt", header = TRUE, sep = ",")
+Test5 <- read.table("Test5.txt", header = TRUE, sep = ",")
+
+# Get the Sunday mornings and nights for each dataset
+TrainSundayMorningsAndNights <- getSundayMorningsAndNights(TrainData)
+TrainSundayMornings <- TrainSundayMorningsAndNights$sundayMornings
+TrainSundayNights <- TrainSundayMorningsAndNights$sundayNights
+Test1SundayMorningsAndNights <- getSundayMorningsAndNights(Test1)
+Test1SundayMornings <- Test1SundayMorningsAndNights$sundayMornings
+Test1SundayNights <- Test1SundayMorningsAndNights$sundayNights
+Test2SundayMorningsAndNights <- getSundayMorningsAndNights(Test2)
+Test2SundayMornings <- Test2SundayMorningsAndNights$sundayMornings
+Test2SundayNights <- Test2SundayMorningsAndNights$sundayNights
+Test3SundayMorningsAndNights <- getSundayMorningsAndNights(Test3)
+Test3SundayMornings <- Test3SundayMorningsAndNights$sundayMornings
+Test3SundayNights <- Test3SundayMorningsAndNights$sundayNights
+Test4SundayMorningsAndNights <- getSundayMorningsAndNights(Test4)
+Test4SundayMornings <- Test4SundayMorningsAndNights$sundayMornings
+Test4SundayNights <- Test4SundayMorningsAndNights$sundayNights
+Test5SundayMorningsAndNights <- getSundayMorningsAndNights(Test5)
+Test5SundayMornings <- Test5SundayMorningsAndNights$sundayMornings
+Test5SundayNights <- Test5SundayMorningsAndNights$sundayNights
+```
+
+## Approach 1-Part 1: Out Of Range
+```{r}
+print(paste("Minimum Global active power for Sunday mornings:", min(TrainSundayMornings$Global_active_power, na.rm = T)))
+print(paste("Maximum Global active power for Sunday mornings:", max(TrainSundayMornings$Global_active_power, na.rm = T)))
+print(paste("Minimum Global active power for Sunday nights:", min(TrainSundayNights$Global_active_power, na.rm = T)))
+print(paste("Maximum Global active power for Sunday nights:", max(TrainSundayNights$Global_active_power, na.rm = T)))
+
+# For Sunday Mornings
+GAP.minSM <- min(TrainSundayMornings$Global_active_power, na.rm = T)
+GAP.maxSM <- max(TrainSundayMornings$Global_active_power, na.rm = T)
+
+gap.test1 <- Test1SundayMornings$Global_active_power
+gap.test2 <- Test2SundayMornings$Global_active_power
+gap.test3 <- Test3SundayMornings$Global_active_power
+gap.test4 <- Test4SundayMornings$Global_active_power
+gap.test5 <- Test5SundayMornings$Global_active_power
+
+# Minutes
+minutes <- c(1:length(gap.test1))
+df1 <- data.frame(minutes, gap.test1)
+
+# For Sunday Mornings - Test 1
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test1, color = factor(gap.test1 <= GAP.maxSM & gap.test1 >= GAP.minSM))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 1 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 1")
+
+# For Sunday Mornings - Test 2
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test2, color = factor(gap.test2 <= GAP.maxSM & gap.test2 >= GAP.minSM))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 2 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 2")
+
+# For Sunday Mornings - Test 3
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test3, color = factor(gap.test3 <= GAP.maxSM & gap.test3 >= GAP.minSM))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 3 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 3")
+
+# For Sunday Mornings - Test 4
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test4, color = factor(gap.test4 <= GAP.maxSM & gap.test4 >= GAP.minSM))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 4 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 4")
+
+# For Sunday Mornings - Test 5
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test5, color = factor(gap.test5 <= GAP.maxSM & gap.test5 >= GAP.minSM))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 5 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 5")
+
+############################
+
+# For Sunday Nights
+GAP.minSN <- min(TrainSundayNights$Global_active_power, na.rm = T)
+GAP.maxSN <- max(TrainSundayNights$Global_active_power, na.rm = T)
+
+gap.test1SN <- Test1SundayNights$Global_active_power
+gap.test2SN <- Test2SundayNights$Global_active_power
+gap.test3SN <- Test3SundayNights$Global_active_power
+gap.test4SN <- Test4SundayNights$Global_active_power
+gap.test5SN <- Test5SundayNights$Global_active_power
+
+# For Sunday Nights - Test 1
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test1SN, color = factor(gap.test1SN <= GAP.maxSN & gap.test1SN >= GAP.minSN))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 1 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 1")
+
+# For Sunday Nights - Test 2
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test2SN, color = factor(gap.test2SN <= GAP.maxSN & gap.test2SN >= GAP.minSN))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 2 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 2")
+
+# For Sunday Nights - Test 3
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test3SN, color = factor(gap.test3SN <= GAP.maxSN & gap.test3SN >= GAP.minSN))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 3 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 3")
+
+# For Sunday Nights - Test 4
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test4SN, color = factor(gap.test4SN <= GAP.maxSN & gap.test4SN >= GAP.minSN))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 4 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 4")
+
+# For Sunday Nights - Test 5
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.test5SN, color = factor(gap.test5SN <= GAP.maxSN & gap.test5SN >= GAP.minSN))) +
+scale_colour_manual(name = "Difference in Min-Max between Train and Test 5 Datasets", values = setNames(c('green', 'red'), c(T, F))) +
+  xlab("Time (Minutes)") + ylab("Global Active Power of Test 5")
+```
+
+
+
+## Approach 1-Part 2: Moving Average
+```{r}
+### SUNDAY MORNINGS ###
+sunmgap1<- Test1SundayMornings[,3]
+sunmgap2<- Test2SundayMornings[,3]
+sunmgap3<- Test3SundayMornings[,3]
+sunmgap4<- Test4SundayMornings[,3]
+sunmgap5<- Test5SundayMornings[,3]
+
+smmean1 <- mean(sunmgap1)
+smsd1 <- sd(sunmgap1)
+smupperbound1 <- smmean1 + 2.81*smsd1
+smlowerbound1 <- smmean1 - 2.81*smsd1
+
+smmean2 <- mean(sunmgap2)
+smsd2 <- sd(sunmgap2)
+smupperbound2 <- smmean2 + 2.81*smsd2
+smlowerbound2 <- smmean2 - 2.81*smsd2
+
+smmean3 <- mean(sunmgap3)
+smsd3 <- sd(sunmgap3)
+smupperbound3 <- smmean3 + 2.81*smsd3
+smlowerbound3 <- smmean3 - 2.81*smsd3
+
+smmean4 <- mean(sunmgap4)
+smsd4 <- sd(sunmgap4)
+smupperbound4 <- smmean4 + 2.81*smsd4
+smlowerbound4 <- smmean4 - 2.81*smsd4
+
+smmean5 <- mean(sunmgap5)
+smsd5 <- sd(sunmgap5)
+smupperbound5 <- smmean5 + 2.81*smsd5
+smlowerbound5 <- smmean5 - 2.81*smsd5
+
+print(paste("the interval of Sunday morning in test1 is: (",smlowerbound1,",",smupperbound1,")"))
+print(paste("the interval of Sunday morning in test2 is: (",smlowerbound2,",",smupperbound2,")"))
+print(paste("the interval of Sunday morning in test3 is: (",smlowerbound3,",",smupperbound3,")"))
+print(paste("the interval of Sunday morning in test4 is: (",smlowerbound4,",",smupperbound4,")"))
+print(paste("the interval of Sunday morning in test5 is: (",smlowerbound5,",",smupperbound5,")"))
+
+
+### SUNDAY NIGHTS ###
+sngap1<- Test1SundayNights[,3]
+sngap2<- Test2SundayNights[,3]
+sngap3<- Test3SundayNights[,3]
+sngap4<- Test4SundayNights[,3]
+sngap5<- Test5SundayNights[,3]
+
+snmean1 <- mean(sngap1)
+snsd1 <- sd(sngap1)
+snupperbound1 <- snmean1 + 2.81*snsd1
+snlowerbound1 <- snmean1 - 2.81*snsd1
+
+snmean2 <- mean(sngap2)
+snsd2 <- sd(sngap2)
+snupperbound2 <- snmean2 + 2.81*snsd2
+snlowerbound2 <- snmean2 - 2.81*snsd2
+
+snmean3 <- mean(sngap3)
+snsd3 <- sd(sngap3)
+snupperbound3 <- snmean3 + 2.81*snsd3
+snlowerbound3 <- snmean3 - 2.81*snsd3
+
+snmean4 <- mean(sngap4)
+snsd4 <- sd(sngap4)
+snupperbound4 <- snmean4 + 2.81*snsd4
+snlowerbound4 <- snmean4 - 2.81*snsd4
+
+snmean5 <- mean(sngap5)
+snsd5 <- sd(sngap5)
+snupperbound5 <- snmean5 + 2.81*snsd5
+snlowerbound5 <- snmean5 - 2.81*snsd5
+
+print(paste("the interval of Sunday night in test1 is: (",snlowerbound1,",",snupperbound1,")"))
+print(paste("the interval of Sunday night in test2 is: (",snlowerbound2,",",snupperbound2,")"))
+print(paste("the interval of Sunday night in test3 is: (",snlowerbound3,",",snupperbound3,")"))
+print(paste("the interval of Sunday night in test4 is: (",snlowerbound4,",",snupperbound4,")"))
+print(paste("the interval of Sunday night in test5 is: (",snlowerbound5,",",snupperbound5,")"))
+
+# Moving average of Sunday Mornings (SundayMornings dataset will vary depending on the dataset being used)
+SundayMornings.mavgTest1 <- SMA(Test1SundayMornings$Global_active_power,n=7)
+SundayMornings.mavgTest2 <- SMA(Test2SundayMornings$Global_active_power,n=7)
+SundayMornings.mavgTest3 <- SMA(Test3SundayMornings$Global_active_power,n=7)
+SundayMornings.mavgTest4 <- SMA(Test4SundayMornings$Global_active_power,n=7)
+SundayMornings.mavgTest5 <- SMA(Test5SundayMornings$Global_active_power,n=7)
+
+# Sunday Nights
+SundayNights.mavgTest1 <- SMA(Test1SundayNights$Global_active_power,n=7)
+SundayNights.mavgTest2 <- SMA(Test2SundayNights$Global_active_power,n=7)
+SundayNights.mavgTest3 <- SMA(Test3SundayNights$Global_active_power,n=7)
+SundayNights.mavgTest4 <- SMA(Test4SundayNights$Global_active_power,n=7)
+SundayNights.mavgTest5 <- SMA(Test5SundayNights$Global_active_power,n=7)
+
+name.title = 'Difference in GAP'
+x.label = 'Time (Minutes)'
+y.label = 'Difference in GAP'
+
+# GAP Difference for Sunday Mornings
+gap.difference.test1 = Test1SundayMornings$Global_active_power - SundayMornings.mavgTest1
+gap.difference.test2 = Test2SundayMornings$Global_active_power - SundayMornings.mavgTest2 
+gap.difference.test3 = Test3SundayMornings$Global_active_power - SundayMornings.mavgTest3
+gap.difference.test4 = Test4SundayMornings$Global_active_power - SundayMornings.mavgTest4
+gap.difference.test5 = Test5SundayMornings$Global_active_power - SundayMornings.mavgTest5
+
+# GAP Difference for Sunday Nights
+gap.difference.test1SN = Test1SundayNights$Global_active_power - SundayNights.mavgTest1
+gap.difference.test2SN = Test2SundayNights$Global_active_power - SundayNights.mavgTest2 
+gap.difference.test3SN = Test3SundayNights$Global_active_power - SundayNights.mavgTest3
+gap.difference.test4SN = Test4SundayNights$Global_active_power - SundayNights.mavgTest4
+gap.difference.test5SN = Test5SundayNights$Global_active_power - SundayNights.mavgTest5
+
+# Minutes (used to plot GAP Difference with respect to Time in minutes)
+minutes <- c(1:length(SundayMornings.mavgTest1))
+
+# Combine minutes variable and gap.diffrence in a data frame so ggplot can be used 
+# For Sunday Mornings
+df1 <- data.frame(minutes, gap.difference.test1)
+df2 <- data.frame(minutes, gap.difference.test2)
+df3 <- data.frame(minutes, gap.difference.test3)
+df4 <- data.frame(minutes, gap.difference.test4)
+df5 <- data.frame(minutes, gap.difference.test5)
+
+# For Sunday Nights
+df6 <- data.frame(minutes, gap.difference.test1SN)
+df7 <- data.frame(minutes, gap.difference.test2SN)
+df8 <- data.frame(minutes, gap.difference.test3SN)
+df9 <- data.frame(minutes, gap.difference.test4SN)
+df10 <- data.frame(minutes, gap.difference.test5SN)
+
+# For Sunday Mornings
+ggplot(df1) + 
+geom_point(aes(x = minutes, y = gap.difference.test1, color = factor(gap.difference.test1 <= smupperbound1 & gap.difference.test1 >= smlowerbound1))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df2) + 
+geom_point(aes(x = minutes, y = gap.difference.test2, color = factor(gap.difference.test2 <= smupperbound2 & gap.difference.test2 >= smlowerbound2))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df3) + 
+geom_point(aes(x = minutes, y = gap.difference.test3, color = factor(gap.difference.test3 <= smupperbound3 & gap.difference.test3 >= smlowerbound3))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df4) + 
+geom_point(aes(x = minutes, y = gap.difference.test4, color = factor(gap.difference.test4 <= smupperbound4 & gap.difference.test4 >= smlowerbound4))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df5) + 
+geom_point(aes(x = minutes, y = gap.difference.test5, color = factor(gap.difference.test5 <= smupperbound5 & gap.difference.test5 >= smlowerbound5))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+# For Sunday Nights
+ggplot(df6) + 
+geom_point(aes(x = minutes, y = gap.difference.test1SN, color = factor(gap.difference.test1SN <= snupperbound1 & gap.difference.test1SN >= snlowerbound1))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df7) + 
+geom_point(aes(x = minutes, y = gap.difference.test2SN, color = factor(gap.difference.test2SN <= snupperbound2 & gap.difference.test2SN >= snlowerbound2))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df8) + 
+geom_point(aes(x = minutes, y = gap.difference.test3SN, color = factor(gap.difference.test3SN <= snupperbound3 & gap.difference.test3SN >= snlowerbound3))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df9) + 
+geom_point(aes(x = minutes, y = gap.difference.test4SN, color = factor(gap.difference.test4SN <= snupperbound4 & gap.difference.test4SN >= snlowerbound4))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+
+ggplot(df10) + 
+geom_point(aes(x = minutes, y = gap.difference.test5SN, color = factor(gap.difference.test5SN <= snupperbound5 & gap.difference.test5SN >= snlowerbound5))) +
+scale_colour_manual(name = name.title, values = setNames(c('green', 'red'), c(T, F))) +
+  xlab(x.label) + ylab(y.label)
+```
+
+
+
+## Approach 2: HMM APPROACH
+```{r}
+# HMM Models for Sunday mornings
+print("1.")
+BICvector <- vector()
+logLikVector <- vector()
+states <- c(2:15)
+vectorntimesMornings = rep(181, nrow(TrainSundayMornings)/181)
+for (state in states) {
+  print(paste("Number of States: ", state))
+  set.seed(1)
+  mod <- depmix(response = Global_active_power ~ 1, data = TrainSundayMornings, nstates = state, ntimes = vectorntimesMornings)
+  fm <- fit(mod)
+  summary(fm)
+  BICvector <- c(BICvector, BIC(fm))
+  logLikVector <- c(logLikVector, logLik(fm))
+}
+print(BICvector)
+print(logLikVector)
+# Plot BIC and logLik
+plot(states, BICvector, type="o", col="red")
+plot(states, logLikVector, type="o", col="blue")
+
+###############################################
+
+# HMM Models for Sunday nights
+print("2.")
+BICvector <- vector()
+logLikVector <- vector()
+states <- c(2:15)
+vectorntimesNights <- rep(181, nrow(TrainSundayNights)/181)
+for (state in states) {
+  print(paste("Number of States: ", state))
+  set.seed(1)
+  mod <- depmix(response = Global_active_power ~ 1, data = TrainSundayNights, nstates = state, ntimes = vectorntimesNights)
+  fm <- fit(mod)
+  summary(fm)
+  BICvector <- c(BICvector, BIC(fm))
+  logLikVector <- c(logLikVector, logLik(fm))
+}
+print(BICvector)
+print(logLikVector)
+# Plot BIC and logLik
+plot(states, BICvector, type="o", col="red")
+plot(states, logLikVector, type="o", col="blue")
+
+###############################################
+
+# Train HMM Model for Sunday mornings with 11 states
+set.seed(1)
+modMorning <- depmix(response = Global_active_power ~ 1, data = TrainSundayMornings, nstates = 11, ntimes = vectorntimesMornings)
+fmMorning <- fit(modMorning)
+summary(fmMorning)
+print(paste("logLik: ", logLik(fmMorning)))
+print(paste("Number of weeks: ", nrow(TrainSundayMornings)/181))
+print(paste("logLik per week: ", logLik(fmMorning)/(nrow(TrainSundayMornings)/181)))
+# Train HMM Model for Sunday nights with 6 states
+set.seed(1)
+modNight <- depmix(response = Global_active_power ~ 1, data = TrainSundayNights, nstates = 6, ntimes = vectorntimesNights)
+fmNight <- fit(modNight)
+summary(fmNight)
+print(paste("logLik: ", logLik(fmNight)))
+print(paste("Number of weeks: ", nrow(TrainSundayNights)/181))
+print(paste("logLik per week: ", logLik(fmNight)/(nrow(TrainSundayNights)/181)))
+
+###############################################
+
+# Compare logLik for Test1
+set.seed(1)
+modTest1Morning <- depmix(response = Global_active_power ~ 1, data = Test1SundayMornings, nstates = 11)
+modTest1Morning <- setpars(modTest1Morning,getpars(fmMorning))
+fmTest1Morning <- fit(modTest1Morning)
+print(paste("logLik: ", logLik(fmTest1Morning)))
+print(paste("Number of weeks: ", nrow(Test1SundayMornings)/181))
+print(paste("logLik per week: ", logLik(fmTest1Morning)/(nrow(Test1SundayMornings)/181)))
+set.seed(1)
+modTest1Night <- depmix(response = Global_active_power ~ 1, data = Test1SundayNights, nstates = 6)
+modTest1Night <- setpars(modTest1Night,getpars(fmNight))
+fmTest1Night <- fit(modTest1Night)
+print(paste("logLik: ", logLik(fmTest1Night)))
+print(paste("Number of weeks: ", nrow(Test1SundayNights)/181))
+print(paste("logLik per week: ", logLik(fmTest1Night)/(nrow(Test1SundayNights)/181)))
+
+###############################################
+
+# Compare logLik for Test2
+set.seed(1)
+modTest2Morning <- depmix(response = Global_active_power ~ 1, data = Test2SundayMornings, nstates = 11)
+modTest2Morning <- setpars(modTest2Morning,getpars(fmMorning))
+fmTest2Morning <- fit(modTest2Morning)
+print(paste("logLik: ", logLik(fmTest2Morning)))
+print(paste("Number of weeks: ", nrow(Test2SundayMornings)/181))
+print(paste("logLik per week: ", logLik(fmTest2Morning)/(nrow(Test2SundayMornings)/181)))
+set.seed(1)
+modTest2Night <- depmix(response = Global_active_power ~ 1, data = Test2SundayNights, nstates = 6)
+modTest2Night <- setpars(modTest2Night,getpars(fmNight))
+fmTest2Night <- fit(modTest2Night)
+print(paste("logLik: ", logLik(fmTest2Night)))
+print(paste("Number of weeks: ", nrow(Test2SundayNights)/181))
+print(paste("logLik per week: ", logLik(fmTest2Night)/(nrow(Test2SundayNights)/181)))
+
+###############################################
+
+# Compare logLik for Test3
+set.seed(1)
+modTest3Morning <- depmix(response = Global_active_power ~ 1, data = Test3SundayMornings, nstates = 11)
+modTest3Morning <- setpars(modTest3Morning,getpars(fmMorning))
+fmTest3Morning <- fit(modTest3Morning)
+print(paste("logLik: ", logLik(fmTest3Morning)))
+print(paste("Number of weeks: ",nrow(Test3SundayMornings)/181))
+print(paste("logLik per week: ", logLik(fmTest3Morning)/(nrow(Test3SundayMornings)/181)))
+set.seed(1)
+modTest3Night <- depmix(response = Global_active_power ~ 1, data = Test3SundayNights, nstates = 6)
+modTest3Night <- setpars(modTest3Night,getpars(fmNight))
+fmTest3Night <- fit(modTest3Night)
+print(paste("logLik: ", logLik(fmTest3Night)))
+print(paste("Number of weeks: ", nrow(Test3SundayNights)/181))
+print(paste("logLik per week: ", logLik(fmTest3Night)/(nrow(Test3SundayNights)/181)))
+
+###############################################
+
+# Compare logLik for Test4
+set.seed(1)
+modTest4Morning <- depmix(response = Global_active_power ~ 1, data = Test4SundayMornings, nstates = 11)
+modTest4Morning <- setpars(modTest4Morning,getpars(fmMorning))
+fmTest4Morning <- fit(modTest4Morning)
+print(paste("logLik: ", logLik(fmTest4Morning)))
+print(paste("Number of weeks: ", nrow(Test4SundayMornings)/181))
+print(paste("logLik per week: ", logLik(fmTest4Morning)/(nrow(Test4SundayMornings)/181)))
+set.seed(1)
+modTest4Night <- depmix(response = Global_active_power ~ 1, data = Test4SundayNights, nstates = 6)
+modTest4Night <- setpars(modTest4Night,getpars(fmNight))
+fmTest4Night <- fit(modTest4Night)
+print(paste("logLik: ", logLik(fmTest4Night)))
+print(paste("Number of weeks: ", nrow(Test4SundayNights)/181))
+print(paste("logLik per week: ", logLik(fmTest4Night)/(nrow(Test4SundayNights)/181)))
+
+###############################################
+
+# Compare logLik for Test5
+set.seed(1)
+modTest5Morning <- depmix(response = Global_active_power ~ 1, data = Test5SundayMornings, nstates = 11)
+modTest5Morning <- setpars(modTest5Morning,getpars(fmMorning))
+fmTest5Morning <- fit(modTest5Morning)
+print(paste("logLik: ", logLik(fmTest5Morning)))
+print(paste("Number of weeks: ", nrow(Test5SundayMornings)/181))
+print(paste("logLik per week: ", logLik(fmTest5Morning)/(nrow(Test5SundayMornings)/181)))
+set.seed(1)
+modTest5Night <- depmix(response = Global_active_power ~ 1, data = Test5SundayNights, nstates = 6)
+modTest5Night <- setpars(modTest5Night,getpars(fmNight))
+fmTest5Night <- fit(modTest5Night)
+print(paste("logLik: ", logLik(fmTest5Night)))
+print(paste("Number of weeks: ", nrow(Test5SundayNights)/181))
+print(paste("logLik per week: ", logLik(fmTest5Night)/(nrow(Test5SundayNights)/181)))
+print(min(Test5SundayNights$Global_active_power, na.rm = T))
+###############################################
+```
+
+
+

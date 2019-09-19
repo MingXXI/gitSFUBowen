@@ -1,0 +1,13 @@
+1. In your reddit_relative.py, what intermediate results did you .cache()? Briefly describe what would have happened if you hadn't used .cache() anywhere. (No need to time it, unless you really want to.)
+	
+	I used .cache() after each .groupBy() and the original dataframe. If I hadn't used .cache(), the running time would be longer as the dataframe would be load and calculate everytime when called. 
+
+
+
+
+
+2. How did marking DataFrames for broadcast affect the running time of the “best author” program above?
+	
+	.broadcast reduce the running time from over 40 second to 30 second around, as .broadcast pass the small size dataframe into every table in advance which reduce the load time. 
+
+

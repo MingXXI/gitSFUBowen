@@ -1,0 +1,7 @@
+1. Looking at your dog-rates.ipynb, do you think the residual are close-enough to being normal to look at the OLS p-value? Can you reasonably conclude that the ratings are increasing?
+	
+	I do not think that the residuals are close enough to being normal to look at the OLS p-value. The plot is left skewed, and the normal test p-value is 2.07953030594431e-192 < 0.05 which supports to reject the hypothesis of being normal. As the model does not pass the normal test. The condition of concluding the linear relationship does not met, I can not conclude the ratings are increasing due to the current experiment. 
+
+2. Do you think that the new “better” prediction is letting the Kalman filter do a better job capturing the true signal in the noise?
+	
+	Yes, the new “better” prediction is letting the Kalman filter do a better job capturing the true signal in the noise. The rest of noise occur in the model supposed to be the sudden large cpu usage process happened during the data collect period (10s) which increase the temp but terminate before next data recording.  

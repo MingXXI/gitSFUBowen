@@ -1,0 +1,238 @@
+<!DOCTYPE html><html>
+<head>
+    <title>Sign In - CAS &#8211; Central Authentication Service</title>
+    <meta charset="UTF-8"/><meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><link rel="stylesheet" href="/cas/webjars/font-awesome/5.0.13/web-fonts-with-css/css/fontawesome-all.min.css"/><link type="text/css" rel="stylesheet" href="/cas/webjars/lato/0.3.0/css/lato.min.css"/><link rel="stylesheet" href="/cas/css/cas.css"/><link rel="shortcut icon" href="/cas/images/favicon.ico" /><script type="text/javascript" src="/cas/webjars/jquery/3.3.1/jquery.min.js"></script>
+
+    
+    <link  href="/cas/css/sfu-overlay.css" rel="stylesheet"/><script src="/cas/js/sfu-overlay.js" type="text/javascript"></script>
+
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta charset="utf-8" http-equiv="refresh" content="300;url=../lt-timeout.html" /></head>
+
+<body class="login">
+<header role="banner">
+        <div class="grid sfu-header">
+            <div class="row">
+                <div class="col sm-12">
+                    <a href="http://www.sfu.ca">
+                        <div class="sfu-logo"><h1>Simon Fraser University</h1></div>
+                    </a>
+                    <div class="sfu-service-name">
+                        <h2>Computing Science web server</h2>
+                        </div>
+                </div>
+            </div>
+            <div class="row sm-banner"></div>
+        </div>
+    </header>
+
+<main role="main" class="container mt-3 mb-3">
+    <div id="content" class="row">
+        <div class="col-lg">
+            <div class="card form-background">
+                <div class="sfu-login-form">
+                    <div class="card-header text-center">
+                        <h2>Sign In</h2>
+                        <span class="fa-stack fa-2x hidden-xs">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" id="fm1" action="login">
+                            <section class="form-group">
+                                <label for="username"><span class="accesskey">U</span>sername:</label>
+
+                                <div>
+                                    <input class="form-control required"
+                                        id="username"
+                                        size="25"
+                                        tabindex="1"
+                                        type="text"
+                                        accesskey="u"
+                                        autocomplete="off" name="username" value=""/></div>
+                            </section>
+
+                            <section class="form-group">
+                                <label for="password"><span class="accesskey">P</span>assword:</label>
+
+                                <div>
+                                    <input class="form-control required"
+                                        type="password"
+                                        id="password"
+                                        size="25"
+                                        tabindex="2"
+                                        accesskey="p"
+                                        autocomplete="off" name="password" value=""/><span id="capslock-on" style="display:none;">
+                                    <p>
+                                        <i class="fa fa-exclamation-circle"></i>
+                                        <span>CAPSLOCK key is turned on!</span>
+                                    </p>
+                                </span>
+                                </div>
+                            </section>
+
+                            <input type="hidden" name="execution" value="bda19646-e94d-4478-9bb9-8e553238f035_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"/><input type="hidden" name="_eventId" value="submit"/><input type="hidden" name="geolocation"/><input class="btn btn-block btn-submit"
+                                name="submit"
+                                accesskey="l"
+                                tabindex="6"
+                                type="submit"
+                                value="Sign In"
+                            /></form>
+                    </div>
+                </div>
+                <div class="sfu-password-information">
+                    <div>
+                        <span class="fa fa-question-circle"></span>
+                        <span>Forgot your <a href="https://my.sfu.ca/ForgotPassword">password</a> or <a href="https://my.sfu.ca/ForgotUsername">computing ID</a>?<br /><a href="https://my.sfu.ca/ChangePassword">Change your password</a><br /><a href="http://www.sfu.ca/itservices.html">Need help?</a></span>
+                        <p/></div>
+
+                    <script type="text/javascript">
+                        var i = "One moment please..."
+                        $( document ).ready(function() {
+                            $("#fm1").submit(function () {
+                                $(":submit").attr("disabled", true);
+                                $(":submit").attr("value", i);
+                                console.log(i);
+                                return true;
+                            });
+                        });
+                    </script>
+
+                    <div id="sidebar">
+        <div class="sidebar-content">
+            <p><h4>Protect your Password</h4><p>SFU will never request our users provide or confirm their Computing ID or password via email or by going to any web site. SFU users should ignore all messages requesting Computing ID and/or password information, no matter how authentic they may appear. <a href="https://www.sfu.ca/itservices/info_security/phishing_scams.html">More information on phishing</a>.</p><p>Always check that your browser shows a closed lock icon and that the URL of this page starts with <strong>https://cas.sfu.ca</strong> and not some other address.</p><p>If you're not sure, <strong>do not enter your password.</strong></p></p>
+        </div>
+    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        <div th:replace="fragments/serviceui :: serviceUI">
+            <a href="fragments/serviceui.html">service ui fragment</a>
+        </div>
+        --><!--
+        <div id="notices" class="col-md mt-3 mt-md-0"  th:if="${delegatedAuthenticationProviderDominant == null}">
+            <div th:replace="fragments/insecure :: insecure">
+                <a href="fragments/insecure.html">insecure alert goeshere</a>
+            </div>
+            <div th:replace="fragments/defaultauthn :: staticAuthentication">
+                <a href="fragments/defaultauthn.html">defaultAuthn</a>
+            </div>
+            <div th:replace="fragments/cookies :: cookiesDisabled">
+                <a href="fragments/cookies.html">cookies fragment</a>
+            </div>
+            <div th:replace="fragments/serviceui :: serviceUI">
+                <a href="fragments/serviceui.html">service ui fragment</a>
+            </div>
+            <div th:replace="fragments/cas-resources-list :: cas-resource-list">
+                <a href="fragments/cas-resources-list.html">cas-resource</a> list fragment
+            </div>
+        </div>
+        <div id="providers" class="col-md mt-3 mt-md-0">
+            <div th:replace="fragments/loginProviders :: loginProviders">
+                <a href="fragments/loginProviders.html">loginProviders</a>
+            </div>
+        </div>
+        --></div>
+</main>
+
+<footer class="footer" role="contentinfo">
+        <div class="sfu-home-links">
+            <h4><a href="https://www.sfu.ca/itservices/publishing/publish_howto/enhanced_web_publishing/cas1.html">IT Services</a></h4>
+            <ul>
+                <li><a href="https://www.sfu.ca/main/admission.html">Admission</a></li>
+                <li><a href="https://www.sfu.ca/main/programs.html">Programs</a></li>
+                <li><a href="https://www.sfu.ca/main/learning.html">Learning</a></li>
+                <li><a href="https://www.sfu.ca/main/research-at-sfu.html">Research</a></li>
+                <li><a href="https://www.sfu.ca/main/sfu-community.html">Community</a></li>
+                <li><a href="https://www.sfu.ca/main/about.html">About</a></li>
+            </ul>
+        </div>
+        <div class="sfu-contact">
+            <h4>Contact Us</h4>
+            <p><strong>IT Services</strong></p>
+            <p>
+                Strand Hall 1001<br />
+                8888 University Drive<br />
+                Burnaby, B.C.<br />
+                Canada. V5A 1S6
+            </p>
+        </div>
+
+        <div class="sfu-links">
+            <div class="h-line"></div>
+            <ul>
+                <li><a href="https://www.sfu.ca/srs">Safety &amp; Risk</a></li>
+                <li><a href="https://www.sfu.ca/campuses/maps-and-directions">SFU Maps &amp; Directions</a></li>
+                <li><a href="https://www.sfu.ca/admission">SFU Admissions</a></li>
+                <li><a href="http://www.sfu.ca/security/sfuroadconditions/">Road Report</a></li>
+                <li><a href="https://give.sfu.ca">Give to SFU</a></li>
+                <li><a href="https://www.sfu.ca/contact/terms-conditions">Terms and conditions</a></li>
+                <li><a href="https://www.sfu.ca/" class="muted">© Simon Fraser University</a></li>
+            </ul>
+        </div>
+        <div class="sfu-logo-acknowledge">
+            <img src="/cas/images/logo-stacked.png" id="footer-logo-img" alt=""><p style="color:#eee;">We would like to acknowledge that at Simon Fraser University we live and work on the unceded traditional territories of the Coast Salish peoples of the Musqueam, Squamish, and Tsleil-Waututh&nbsp;Nations.</p>
+        </div>
+                
+    </footer>
+
+<script type="text/javascript" src="/cas/webjars/zxcvbn/4.3.0/zxcvbn.js"></script>
+<script type="text/javascript" src="/cas/webjars/jquery-ui/1.12.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="/cas/webjars/jquery-cookie/1.4.1-1/jquery.cookie.js"></script>
+<script src="/cas/webjars/bootstrap/4.1.0/js/bootstrap.bundle.min.js"></script>
+
+<script src="/cas/webjars/headjs/1.0.3/head.min.js"></script>
+<script src="/cas/webjars/store.js/1.3.17/store.min.js"></script>
+<script type="text/javascript" src="/cas/js/cas.js"></script>
+
+<script>
+head.ready(document, function () {
+    if (!window.jQuery) {
+    	var jqueryUrl = "\/cas\/webjars\/jquery\/3.3.1\/jquery.min.js"; 
+        head.load(jqueryUrl, loadjQueryUI);
+    } else {
+        notifyResourcesAreLoaded(resourceLoadedSuccessfully);
+    }
+});
+
+function loadjQueryUI() {
+	var jqueryUrl = "\/cas\/webjars\/jquery-ui\/1.12.1\/jquery-ui.min.js"; 
+	head.load(jqueryUrl, loadjQueryCookies);
+}
+
+function loadjQueryCookies() {
+	var jqueryUrl = "\/cas\/webjars\/jquery-cookie\/1.4.1-1\/jquery.cookie.js"; 
+	head.load(jqueryUrl, notifyResourcesAreLoaded(resourceLoadedSuccessfully));
+}
+
+function notifyResourcesAreLoaded(callback) {
+    if (typeof callback === "function") {
+        callback();
+    }
+}
+</script>
+
+<script>
+    /*<![CDATA[*/
+
+    var trackGeoLocation = false;
+
+    var googleAnalyticsTrackingId = null;
+
+    if (googleAnalyticsTrackingId != null && googleAnalyticsTrackingId != '') {
+        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+        ga('create', googleAnalyticsTrackingId, 'auto');
+        ga('send', 'pageview');
+    }
+
+    /*]]>*/
+</script>
+
+</body>
+</html>

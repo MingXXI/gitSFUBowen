@@ -1,0 +1,33 @@
+/* File: basic_int_stack.cpp
+
+  Implementation of functions for basic simple array-based implementation of a stack.
+
+*/
+
+#include "basic_int_stack.h"// contains the declarations of the variables and functions.
+
+basic_int_stack::basic_int_stack(){
+  // the default constructor intitializes the private variables.
+  capacity = 100;
+  A = new int[capacity];
+  top_index = -1;// top_index = -1 indicates the stack is empty.
+} 
+
+void basic_int_stack::push( int item ){
+  top_index = top_index + 1;
+  A[top_index] = item ;
+}
+
+int basic_int_stack)::top(){
+  return A[top_index];
+}
+
+int basic_int_stack::pop(){
+  top_index = top_index - 1 ;
+  return A[ top_index + 1 ];
+}
+
+
+bool basic_int_stack::empty(){
+  return top_index == -1 ; 
+}

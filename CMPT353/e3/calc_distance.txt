@@ -1,0 +1,2 @@
+Unfiltered distance: 3186.44
+Filtered distance: 0.00

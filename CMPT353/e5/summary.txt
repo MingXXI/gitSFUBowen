@@ -1,0 +1,78 @@
+DATA-1:
+
+mean of  x: 8.717696186413818    y: 12.522874034702589
+SD of    x: 12.155517231222024   y: 6.63996400756785
+min of   x: -22.635877790008944  y: -2.5650878326932127
+max of   x: 35.23705548785129    y: 27.38415261152477
+
+Correlation coefficient between x and y: 0.950325695438
+
+One sentence description: 
+   The x and y variables contained in 'data-1.csv' file show strong positive linear association as the correlation coefficient is 0.950325695438, very close to 1. 
+
+
+DATA-2:
+
+mean of  x: -0.7107871267159582  y: -0.7489869764497992
+SD of    x: 11.481583587790732   y: 6.257917998755848
+min of   x: -33.2711130771198    y: -18.621803760419066
+max of   x: 27.6470003722073     y: 14.147314992317481
+
+
+Correlation coefficient between x and y: 0.955153166575
+
+One sentence description: 
+   The x and y variables contained in 'data-2.csv' file show strong positive linear association as the correlation coefficient is 0.955153166575, very close to 1. 
+
+
+DATA-3:
+
+mean of  x: 0.9689074904200942   y: 8.50853523664133
+SD of    x: 2.23555786105797     y: 1.1493008110024527
+min of   x: -2.4490643296742807  y: 6.641734490391762
+max of   x: 4.51888491755363     y: 10.551871022804317
+
+Correlation coefficient between x and y: 0.981937264676
+
+One sentence description: 
+   The x and y variables contained in 'data-3.csv' file show positive linear association as the correlation coefficient is 0.981937264676, very close to 1. 
+
+
+DATA-4:
+
+mean of  x: 49.90508614830509    y: 18.55383652542372
+SD of    x: 28.50861051988193    y: 16.545896442941686
+min of   x: 0.0                  y: 0.0
+max of   x: 87.3767              y: 44.56504
+
+Correlation coefficient between x and y: -0.0811930673549
+
+One sentence description: 
+   The x and y variables contained in 'data-4.csv' file show no evident linear association as the correlation coefficient is -0.0811930673549, very close to 0. 
+
+
+
+DATA-5:
+
+mean of  x: 49.90999357843096    y: 18.55552493772909
+SD of    x: 28.500000943801368   y: 16.540796301840782
+min of   x: 4.337892453674525    y: 0.05549750758115175
+max of   x: 91.0528633396976     y: 49.93419703633311
+
+Correlation coefficient between x and y: -0.0882359898306
+
+One sentence description: 
+   The x and y variables contained in 'data-5.csv' file show no evident linear association as the correlation coefficient is -0.0882359898306, very close to 0. 
+
+
+DATA-6:
+
+mean of  x: 7.2161551796099195   y: 7.6022150282372944
+SD of    x: 11.921599067458313   y: 11.764382455006647
+min of   x: -24.33382075234097   y: -22.9563569970746
+max of   x: 35.402138910929      y: 36.07987403078143
+
+Correlation coefficient between x and y: 0.935068566209
+
+One sentence description: 
+   The x and y variables contained in 'data-6.csv' file show strong positive linear association as the correlation coefficient is 0.935068566209, very close to 1.

@@ -1,0 +1,7 @@
+1. Based on your results for the last question, do you think daily temperatures are a good way to predict population density? Briefly explain why or why not.
+
+	No, base on the figure, there isn't a clear linear relationship between the daily temperatures and city population density. As a specific temperature given, there are several different population density value matches to it, which is a evidence to assume there is no linear relationship. To test the assumption, I used linear regression on the plot but result in a faliure of having associative relationship. 
+
+2. The larger data file (stations.json.gz) was kept compressed throughout the analysis. Constantly decompressing the data seems inefficient. Why might this be faster than working with the uncompressed .json data?
+	
+	The uncompressed .json data is uncompressed during the python program and it is stored in ram rather than hard drive. Generally, ram has a faster load speed than hard drive where the original compressed file is stored in. 

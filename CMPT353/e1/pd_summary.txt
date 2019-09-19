@@ -1,0 +1,28 @@
+City with lowest total precipitation:
+YELLOWKNIFE A
+Average precipitation in each month:
+2016-01    27.779783
+2016-02    30.426295
+2016-03    29.410072
+2016-04    17.966543
+2016-05    21.344569
+2016-06    20.694981
+2016-07    24.977186
+2016-08    19.856618
+2016-09    24.065637
+2016-10    44.684411
+2016-11    34.615686
+2016-12    32.366795
+dtype: float64
+Average precipitation in each city:
+name
+BURNABY SIMON FRASER U            47.778598
+CALGARY INTL A                    14.333333
+GANDER INTL A                     39.912329
+HALIFAX INTL A                    41.445055
+REVELSTOKE                        23.409972
+SHERBROOKE                        23.681440
+TORONTO LESTER B. PEARSON INT'    17.521978
+VANCOUVER INTL A                  36.522222
+YELLOWKNIFE A                      6.154270
+dtype: float64

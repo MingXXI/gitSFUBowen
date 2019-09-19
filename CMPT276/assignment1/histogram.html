@@ -1,0 +1,96 @@
+<!-- /***
+ * For the brave souls who get this far: You are the chosen ones,
+ * the valiant knights of programming who toil away, without rest,
+ * fixing our most awful code. To you, true saviors, kings of men,
+ * I say this: never gonna give you up, never gonna let you down,
+ * never gonna run around and desert you. Never gonna make you cry,
+ * never gonna say goodbye. Never gonna tell a lie and hurt you.
+ */
+/***
+ * 致终于来到这里的勇敢的人：
+ * 你是被上帝选中的人，是英勇的、不敌辛苦的、不眠不休的来修改我们这最棘手的代码的编程骑士。
+ * 你，我们的救世主，人中之龙，我要对你说：永远不要放弃，永远不要对自己失望，永远不要逃走，辜负了自己，
+ * 永远不要哭啼，永远不要说再见，永远不要说谎来伤害自己。
+ */ -->
+
+
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title> Histogram</title>
+		<link href = "histogram.css" rel = "stylesheet" > 
+		<script src="calculate.js"></script>
+	</head>
+	<body>
+
+	<h1> Histogram Generator</h1>
+
+	<div id="bounds">
+		<h2> Lower bounds</h2>
+		<ul style = "list-style: none;" id="list1">
+			<li>Max <input type="number" value="100.00" maxlength="6" max="100.00" min="0.00" step="0.01" onkeydown="keyup_submit(event);" onclick="display()" > </li>
+			<li>A+ <input type="number"  value="95.00" maxlength="6" max="100.00" min="0.00" step="0.01" onkeydown="keyup_submit(event);" onclick="display()"> </li>
+			<li>A  <input type="number"  value="90.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>A- <input type="number"  value="85.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>B+ <input type="number"  value="80.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>B  <input type="number"  value="75.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>B- <input type="number"  value="70.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>C+ <input type="number"  value="65.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>C  <input type="number"  value="60.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>C- <input type="number"  value="55.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>D  <input type="number"  value="50.00" maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+			<li>F  <input type="number"  value="0.00"  maxlength="6" max="100.00" min="0.00" step="0.01" onclick="display()" onkeydown="keyup_submit(event);"> </li>
+		</ul>
+	</div>
+
+	<div id = "histogram">
+		<h2>Histogram</h2>
+		<ul style = "list-style: none" id = "list2">
+			<li>A+</li> <div name="visualize"></div> 
+			<li>A</li>  <div name="visualize"></div>
+			<li>A-</li> <div name="visualize"></div>
+			<li>B+</li> <div name="visualize"></div>
+			<li>B</li>  <div name="visualize"></div>
+			<li>B-</li> <div name="visualize"></div>
+			<li>C+</li> <div name="visualize"></div>
+			<li>C</li>  <div name="visualize"></div>
+			<li>C-</li> <div name="visualize"></div>
+			<li>D</li>  <div name="visualize"></div>
+			<li>F</li>  <div name="visualize"></div>
+		</ul>
+	</div>
+
+	</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

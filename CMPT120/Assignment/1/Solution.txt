@@ -1,0 +1,135 @@
+## CMPT 120 2016-2 
+## Runner distances
+## solution to assignment #1
+## author: Diana Cukierman
+
+'''
+Program brief description:
+Two locations are asked to the user (locations are distances to a 0 point).
+Tthe first distances is in km,m,cm, the second  in mi,yd,ft
+The user is assumed to type correctly
+The program  calculates the distance between the two locations,
+expressed in different ways
+The numbers will be asked one after the other
+'''
+
+# Other solutions are possible
+
+
+# FUNCTIONS DEFINITIONS
+### IT IS NOT REQUIRED IN ASSIGNMENT #1
+### TO DECOMPOSE THE PROBLEM IN FUNCTIONS !!!!!
+### the solution is presented using functions for
+### further reference
+
+
+def welcome_message():
+    '''
+    subroutine - does not return any value, just prints a welcome message
+    does not receive any values either
+    '''
+    print  ("-" * 65)
+    print  ('Welcome to the CMPT 120  "Runner distances" system!')
+    print  ("You will be able to calculate the distance between two locations")
+    print  ()
+    print  ("Please follow the system prompts")
+    print  ("-" * 65)
+    return
+
+
+    
+
+# TOP LEVEL
+
+# constants definitions
+
+M_IN_KM = 1000
+CM_IN_M = 100
+CM_IN_KM =  M_IN_KM * CM_IN_M
+
+FT_IN_YD = 3
+YD_IN_MI = 1760
+FT_IN_MI = FT_IN_YD * YD_IN_MI
+
+CM_IN_FT = 30.48
+
+# usual convention -  variables used as constants have names
+# all in upper cases.
+# COnstants are not supposed to be modified within the program
+# (note that  Python will not check this)
+
+# the  values could be used directly in the code, 
+# but with a constant it is more self-documented
+# and it allows that future revisions are simpler
+
+
+welcome_message()
+
+# ASK VALUES--------------------------
+# In this solution we use 6 variables,
+# one for each value
+# a more generic solution could be done - not for this assignment!
+
+print ("\nPlease provide the data for the first runner")
+print ()
+km1 = int(input("number of kilometers (km): "))
+m1  = int(input("number of meters (m) (between 1 and 999 inclusive): "))
+cm1 = int(input("number of centimeters (cm) (between 1 and 99 inclusive): "))
+
+
+print ("\nPlease provide the data for the second runner")
+print ()
+mi2 = int(input("number of miles (mi): "))
+yd2 = int(input("number of yards (yd) (between 1 and 1759 inclusive): "))
+ft2 = int(input("number of feet (cm) (between 1 and 2 inclusive): "))
+
+# first runner in cm -----------------------------
+
+total_cm1 = km1* CM_IN_KM  + m1 * CM_IN_M  + cm1
+
+print()
+print ("     TRACE printing to best follow the execution")
+print ("     First runner all in cm is:",total_cm1,"cm")
+
+
+
+
+# CALCULATING AND PRINTING FIRST RESULT
+
+# second  runner in ft and cm -----------------------------
+
+total_ft2 = mi2* FT_IN_MI  + yd2 * FT_IN_YD  + ft2
+total_cm2 = total_ft2 * CM_IN_FT
+
+message = "FIRST RESULT: distance of second runner in ft and in cm:"
+print("\n",message,"\n",len(message)*"-")
+
+print (" The  second runner all in ft is:",total_ft2,"ft")
+
+print (" The second runner all in cm (1ft = 30.48 cm) is:", total_cm2, "cm")
+
+
+# CALCULATING AND PRINTING SECOND RESULT - difference in cm
+
+diff_cm = round(abs(total_cm1 - total_cm2),2)
+message = "SECOND RESULT: difference between the two runners in cm is:"
+print("\n",message, diff_cm,"\n",len(message)*"-")
+
+# FROM DIFF IN CM CALCULATE IN KM,M,CM------
+
+## converting the dif to the format km m cm
+km_diff = int(diff_cm // CM_IN_KM)
+left_over_cm = diff_cm % CM_IN_KM
+m_diff = int(left_over_cm // CM_IN_M)
+cm_diff = round(left_over_cm % CM_IN_M,2)
+
+message = "THIRD RESULT: The difference is also expressible as:"
+print("\n", message, "\n",len(message)*"-")
+print(" ",km_diff,"km",m_diff,"m",cm_diff,"cm")
+
+
+
+print ("\nEnd of the program! Bye!")
+
+
+# END 

@@ -1,0 +1,4 @@
+1. The values that are the result of data['timestamp']*fit.slope + fit.intercept is simply a linear fit to the rating fetched from twitters. The result is the estimated value generated from the linear model, data['timestamp'] is the input value to do the estimate, fit.slope is the slope of the linear fit line, fit.intercept is the value of the intercept point on y-axis of the linear fit line.
+
+
+2. timestamp is generated from created_at data, and timestamp is a float value can be used to calculate linregress. So, timestamp can be used for producing the fit line and can be matched correctly to the points to plot. 

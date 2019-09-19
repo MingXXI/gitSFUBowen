@@ -1,0 +1,146 @@
+CMPT 120
+Instructor: Diana Cukierman
+Game Flipping Dance
+Sample Run
+
+Notice the validations in the user dialog
+=================================================================
+
+>>> 
+ Welcome to the "Flipping Dance" game 
+ =====================================
+
+ Note: Levels 1, 2 and 3 are implemented;
+       You will be able to choose your preferred level for each game;
+       The digit/color you choose only affects the totals but not flips
+
+Would  you like to play? (y/n): ==> x
+That is not a valid input, please re-enter
+Would  you like to play? (y/n): ==> 3
+That is not a valid input, please re-enter
+Would  you like to play? (y/n): ==> *
+That is not a valid input, please re-enter
+Would  you like to play? (y/n): ==> y
+
+Which level would you like to play?
+ 1 - Basic, user only,
+ 2 - Advanced, user and computer, 
+ 3 - Expert, user and computer: ==> a
+The value should only have digits, please re-enter
+
+Which level would you like to play?
+ 1 - Basic, user only,
+ 2 - Advanced, user and computer, 
+ 3 - Expert, user and computer: ==> 4
+That is not a valid input, please re-enter
+
+Which level would you like to play?
+ 1 - Basic, user only,
+ 2 - Advanced, user and computer, 
+ 3 - Expert, user and computer: ==> -1
+The value should only have digits, please re-enter
+
+Which level would you like to play?
+ 1 - Basic, user only,
+ 2 - Advanced, user and computer, 
+ 3 - Expert, user and computer: ==> 1
+
+Which digit/color would you like for you?
+ 0 - white,
+ 1 - black: ==> a
+The value should only have digits, please re-enter
+
+Which digit/color would you like for you?
+ 0 - white,
+ 1 - black: ==> 3
+That is not a valid input, please re-enter
+
+Which digit/color would you like for you?
+ 0 - white,
+ 1 - black: ==> 1
+
+Size of board (between 3 and 6 inclusive): ==> a
+The value should only have digits, please re-enter
+
+Size of board (between 3 and 6 inclusive): ==> 77
+That is not a valid input, please re-enter
+
+Size of board (between 3 and 6 inclusive): ==> 5
+
+The board is
+-------------
+
+(initial board)
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	
+Row 0		 1	 1	 1	 1	 0
+Row 1		 1	 1	 0	 0	 0
+Row 2		 1	 0	 1	 0	 1
+Row 3		 0	 0	 0	 0	 1
+Row 4		 1	 1	 1	 1	 0
+
+User, what position are you choosing to flip? (max flips = 5)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 4): a
+The value should only have digits, please re-enter
+row?  (<= 4): 33
+That is not a valid input, please re-enter
+row?  (<= 4): 4
+col?  (<= 4): 33
+That is not a valid input, please re-enter
+col?  (<= 4): 4
+
+The board is
+-------------
+
+(after user played (4, 4))
+
+	     Col 0	Col 1	Col 2	Col 3	Col 4	
+Row 0		 1	 1	 1	 1	 0
+Row 1		 1	 1	 0	 0	 0
+Row 2		 1	 0	 1	 0	 1
+Row 3		 0	 0	 0	 0	 1
+Row 4		 1	 1	 1	 1	 1
+
+User, what position are you choosing to flip? (max flips = 5)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 4): 99
+col?  (<= 4): 99
+
+This game is over because you did not want to flip again!
+
+Rows that have an even number of user digit's (1)
+
+ - Row 0
+ - Row 1
+
+Cols that have an even number of user digit's (1)
+
+ - Col 0
+ - Col 3
+
+
+Congratulations! you won this game! 
+You had chosen digit 1
+
+You got 2 rows with an even number of 1's
+ and 2 cols with an even number of 1's
+
+!!! Therefore, this game gives you: 4 points !!!
+
+Would  you like to play again? (y/n): ==> a
+That is not a valid input, please re-enter
+
+Would  you like to play again? (y/n): ==> 23
+That is not a valid input, please re-enter
+
+Would  you like to play again? (y/n): ==> n
+
+TOTALS ALL GAMES
+Total points user in all games:  4
+Total games the user won:  1
+Total games the computer won:  0
+Board value  of last board's first row in decimal:  30
+>>> 

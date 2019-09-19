@@ -1,0 +1,23 @@
+1. In the A/B test analysis, do you feel like we're p-hacking? How comfortable are you coming to a conclusion at ?
+
+	No, we don't feel like we are p-hacking. The objects of our testing are different, one is "instructor" the other is "users", moreover, there are only 4 tests have been done at the same time, the result of each test has no influence on making our decision to do the other tests. Base on the p-value from each test we cannot reject Null hypothesis and say 'users search more often', but we are 95% confident to say 'instructors search more often'.
+
+
+
+2. If we had done T-tests between each pair of sorting implementation results, how many tests would we run? If we looked for  in them, what would the probability be of having all conclusions correct, just by chance? That's the effective p-value of the many-T-tests analysis. [We could have done a Bonferroni correction when doing multiple T-tests, which is a fancy way of saying “for  tests, look for significance at ”.]
+
+	We would run 7*6/2 = 21 T-tests. The probability of having all conclusions correct is 0.95^21, roughly 0.34056
+
+
+
+3. Give a ranking of the sorting implementations by speed, including which ones could not be distinguished. (i.e. which pairs could our experiment not conclude had different running times?)
+	
+	The ranking of the sorting by speed from fast to slow is :
+		partition_sort    0.016427
+		qs1               0.021076
+		qs5               0.032267
+		qs4               0.032340
+		qs2               0.032688
+		qs3               0.032696
+		merge1            0.036221
+	Based on the posthoc table and its reject column, the pairs that cannot be distinguished is : qs2 and qs3; qs4 and qs5.

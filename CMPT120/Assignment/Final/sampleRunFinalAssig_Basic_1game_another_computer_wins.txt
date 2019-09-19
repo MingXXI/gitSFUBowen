@@ -1,0 +1,82 @@
+CMPT 120
+Instructor: Diana Cukierman
+Game Flipping Dance
+Sample Run
+
+one game, basic
+user loses
+not an even number of user digits neither in rows nor cols
+======================================================================
+
+
+
+>>> 
+ Welcome to the "Flipping Dance" game 
+ =====================================
+
+ Note: Levels 1, 2 and 3 are implemented;
+       You will be able to choose your preferred level for each game;
+       The digit/color you choose only affects the totals but not flips
+
+Would  you like to play? (y/n): ==> y
+
+Which level would you like to play?
+ 1 - Basic, user only,
+ 2 - Advanced, user and computer, 
+ 3 - Expert, user and computer: ==> 1
+
+Which digit/color would you like for you?
+ 0 - white,
+ 1 - black: ==> 1
+
+Size of board (between 3 and 6 inclusive): ==> 3
+
+The board is
+-------------
+
+(initial board)
+
+	     Col 0	Col 1	Col 2	
+Row 0		 0	 0	 1
+Row 1		 1	 1	 0
+Row 2		 0	 1	 0
+
+User, what position are you choosing to flip? (max flips = 3)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 2): 1
+col?  (<= 2): 1
+
+The board is
+-------------
+
+(after user played (1, 1))
+
+	     Col 0	Col 1	Col 2	
+Row 0		 0	 0	 1
+Row 1		 1	 0	 0
+Row 2		 0	 1	 0
+
+User, what position are you choosing to flip? (max flips = 3)
+(Type  99   for both row and column, if you do not want to do more flips)
+
+row?  (<= 2): 99
+col?  (<= 2): 99
+
+This game is over because you did not want to flip again!
+
+Rows that have an even number of user digit's (1)
+
+ -  None of the Rows
+
+Cols that have an even number of user digit's (1)
+
+ -  None of the Cols
+
+
+Sorry!  for you to win, the board had to have at least 
+one row and one col with an even number of your digit
+but such is nto the case; You had chosen digit 1
+Therefore, I, the computer, win this game!
+
+Would  you like to play again? (y/n): ==>

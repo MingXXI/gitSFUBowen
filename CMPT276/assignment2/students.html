@@ -1,0 +1,151 @@
+<!-- <!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title> Student Information System</title>
+		<link href = "students.css" rel = "stylesheet" > 
+		<script src="students.js"></script>
+	</head>
+	<body>
+		<h1> Student Information System</h1>
+
+		<div id = "background"></div>
+		<div id = "home"><a href="students.html">Home</a></div>
+		<div id = "readme"><a href="readme.html">ReadMe</a></div>
+
+		<div id = "insert" action = "insert" onsubmit = "return validinsert()">
+			<p id = "message1"><b>Add a New Student</b></p>
+
+			Name:
+			<input type="text" name="name" placeholder="Ming"><br>
+			Gender:
+			<br>
+			<input type="radio" name="gender" value="M" > Male
+  			<input type="radio" name="gender" value="F" > Female<br>
+  			<input type="radio" name="gender" value="O" > Other
+  			<input type="radio" name="gender" value="N" > Not Willing to Tell <br>
+			Weight (kg):
+			<input type="number" name="weight" class = "number" placeholder="70" step="0.5"><br>
+			Height (cm):
+			<input type="number" name="height" class = "number" placeholder="160" step = "0.1"><br>
+			Hair Color:
+			<input type="color" name="haircolor" value="#000000"><br>
+			GPA:
+			<input type="number" name="gpa" class="number" placeholder="3.0" step="0.01" ><br>
+
+			<input type="submit" name ="Insert" id = "Insert" value = "Insert">
+		</div>
+
+		<div id = "delete_update" action = "search" onsubmit = "return validearch()">
+			<p id = "message2"><b>Search for a Student</b></p>
+			<input type="text" name="name" class = "text">
+			<input type="submit" name="Insert" value = "search">
+			
+		</div>
+
+
+		<div id = "display" action = "display" onsubmit = "">
+			<p id = "message2"><b>Display Students</b></p>
+
+			<input type="submit" name ="Display" id = "Display" value = "Display">
+		</div>
+
+
+	</body>
+</html>
+ -->
+
+ <!DOCTYPE html>
+<html>
+
+	<head>
+
+		<title> Student Information System</title>
+		<link href = "students.css" rel = "stylesheet" > 
+		<script src="students.js"></script>
+	</head>
+	<body>
+		<h1> Student Information System</h1>
+
+		<div id = "background"></div>
+		<div id = "home"><a href="students.html">Home</a></div>
+		<div id = "readme"><a href="readme.html">ReadMe</a></div>
+
+		<div id = "insert" action = "insert" onsubmit = "return validinsert()">
+			<p id = "message1"><b>Add a New Student</b></p>
+
+			Name:
+			<input type="text" name="name" placeholder="Ming"><br>
+			Gender:
+			<br>
+			<input type="radio" name="gender" value="M" > Male
+  			<input type="radio" name="gender" value="F" > Female<br>
+  			<input type="radio" name="gender" value="O" > Other
+  			<input type="radio" name="gender" value="N" > Not Willing to Tell <br>
+			Weight (kg):
+			<input type="number" name="weight" class = "number" placeholder="70" step="0.5"><br>
+			Height (cm):
+			<input type="number" name="height" class = "number" placeholder="160" step = "0.1"><br>
+			Hair Color:
+			<input type="color" name="haircolor" value="#000000"><br>
+			GPA:
+			<input type="number" name="gpa" class="number" placeholder="3.0" step="0.01" ><br>
+
+			<input type="submit" name ="Insert" id = "Insert" value = "Insert">
+		</div>
+
+		<div id = "delete_update" action = "search" onsubmit = "return validsearch()">
+
+			<p id = "message2"><b>Update/Delete a Student</b></p>
+
+			<div id = "update" action = "update" onsubmit = "return validinsert()">
+
+				Name:
+				<input type="text" name="name" placeholder="Ming"><br>
+				Gender:
+				<br>
+				<input type="radio" name="gender" value="M" > Male
+  				<input type="radio" name="gender" value="F" > Female<br>
+  				<input type="radio" name="gender" value="O" > Other
+  				<input type="radio" name="gender" value="N" > Not Willing to Tell <br>
+				Weight (kg):
+				<input type="number" name="weight" class = "number" placeholder="70" step="0.5"><br>
+				Height (cm):
+				<input type="number" name="height" class = "number" placeholder="160" step = "0.1"><br>
+				Hair Color:
+				<input type="color" name="haircolor" value="#000000"><br>
+				GPA:
+				<input type="number" name="gpa" class="number" placeholder="3.0" step="0.01" ><br>
+
+				<input type="submit" name ="Update" id = "Update" value = "Uptate">
+			</div>
+
+			<div id = "delete" action = "delete" onsubmit = "return validinsert()">
+				Name:
+				<input type="text" name="name" class = "text"><br>
+				<input type="submit" name="Delete" value = "Delete">
+			
+		</div>
+
+
+		<div id = "display" action = "display" onsubmit = "">
+			<p id = "message2"><b>Display Students</b></p>
+
+			<input type="submit" name ="Display" id = "Display" value = "Display">
+		</div>
+
+
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,253 @@
+From eec642bebe760d2857c79053a829441748463997 Mon Sep 17 00:00:00 2001
+From: Bowen Wang <bowenw@sfu.ca>
+Date: Mon, 25 Mar 2019 03:03:05 -0700
+Subject: [PATCH] first commit
+
+---
+ Makefile                               |  2 +-
+ arch/x86/entry/syscalls/syscall_64.tbl |  6 ++-
+ cs300/Makefile                         |  1 +
+ cs300/array_stats.c                    | 47 +++++++++++++++++++++
+ cs300/array_stats.h                    | 14 +++++++
+ cs300/cs300_test.c                     | 14 +++++++
+ cs300/cs300_test.h                     |  1 +
+ cs300/process_ancestors.c              | 58 ++++++++++++++++++++++++++
+ cs300/process_ancestors.h              | 19 +++++++++
+ 9 files changed, 159 insertions(+), 3 deletions(-)
+ create mode 100644 cs300/Makefile
+ create mode 100644 cs300/array_stats.c
+ create mode 100644 cs300/array_stats.h
+ create mode 100644 cs300/cs300_test.c
+ create mode 100644 cs300/cs300_test.h
+ create mode 100644 cs300/process_ancestors.c
+ create mode 100644 cs300/process_ancestors.h
+
+diff --git a/Makefile b/Makefile
+index 06fda21614bc..b4e8ef58308d 100644
+--- a/Makefile
++++ b/Makefile
+@@ -958,7 +958,7 @@ endif
+ PHONY += prepare0
+ 
+ ifeq ($(KBUILD_EXTMOD),)
+-core-y		+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/
++core-y		+= kernel/ certs/ mm/ fs/ ipc/ security/ crypto/ block/ cs300/
+ 
+ vmlinux-dirs	:= $(patsubst %/,%,$(filter %/, $(init-y) $(init-m) \
+ 		     $(core-y) $(core-m) $(drivers-y) $(drivers-m) \
+diff --git a/arch/x86/entry/syscalls/syscall_64.tbl b/arch/x86/entry/syscalls/syscall_64.tbl
+index f0b1709a5ffb..09edc17a7b25 100644
+--- a/arch/x86/entry/syscalls/syscall_64.tbl
++++ b/arch/x86/entry/syscalls/syscall_64.tbl
+@@ -343,8 +343,10 @@
+ 332	common	statx			__x64_sys_statx
+ 333	common	io_pgetevents		__x64_sys_io_pgetevents
+ 334	common	rseq			__x64_sys_rseq
+-
+-#
++340	common 	cs300_test 		__x64_sys_cs300_test
++341	common 	array_stats		__x64_sys_array_stats	
++342	common	process_ancestors	__x64_sys_process_ancestors
++#	
+ # x32-specific system call numbers start at 512 to avoid cache impact
+ # for native 64-bit operation. The __x32_compat_sys stubs are created
+ # on-the-fly for compat_sys_*() compatibility system calls if X86_X32
+diff --git a/cs300/Makefile b/cs300/Makefile
+new file mode 100644
+index 000000000000..4dd182c93acc
+--- /dev/null
++++ b/cs300/Makefile
+@@ -0,0 +1 @@
++obj-y := cs300_test.o array_stats.o process_ancestors.o
+diff --git a/cs300/array_stats.c b/cs300/array_stats.c
+new file mode 100644
+index 000000000000..d1c64e83315b
+--- /dev/null
++++ b/cs300/array_stats.c
+@@ -0,0 +1,47 @@
++#include "array_stats.h"
++#include <linux/kernel.h>
++#include <linux/syscalls.h>
++
++SYSCALL_DEFINE3(array_stats, struct array_stats*, stats, long*, data, long, size)
++{
++	struct array_stats stats_copy;
++	long stats_min;
++	long stats_max;
++	long stats_sum = 0;
++	long stats_data;
++	int i = 0;
++
++	if (size<=0) return -EINVAL;
++	
++	if (!stats || !size) return -EFAULT;
++
++	while (i<size){
++		int data_size = sizeof(data[i]);
++		if (copy_from_user(&stats_data, &data[i], data_size)){
++			return -EFAULT;
++		}
++		if(i == 0){
++			stats_min = stats_data;
++			stats_max = stats_data;
++		}
++		if (stats_min > stats_data)
++		{
++			stats_min = stats_data;
++		}
++		if (stats_max < stats_data)
++		{
++			stats_max = stats_data;
++		}
++		stats_sum += stats_data;
++		
++		i++;
++	}
++	stats_copy.min = stats_min;
++	stats_copy.max = stats_max;
++	stats_copy.sum = stats_sum;
++
++	if (copy_to_user(stats, &stats_copy,sizeof(stats_copy))){
++		return -EFAULT;
++	}
++	return 0;
++}
+diff --git a/cs300/array_stats.h b/cs300/array_stats.h
+new file mode 100644
+index 000000000000..853363e93e34
+--- /dev/null
++++ b/cs300/array_stats.h
+@@ -0,0 +1,14 @@
++#include <linux/syscalls.h>
++// Define the array_stats struct for the array_stats syscall.
++#ifndef _ARRAY_STATS_H_
++#define _ARRAY_STATS_H_
++
++struct array_stats {
++  long min;
++  long max;
++  long sum;
++};
++
++asmlinkage long sys_array_stats(struct array_stats *stats, long data[], long size);
++
++#endif
+diff --git a/cs300/cs300_test.c b/cs300/cs300_test.c
+new file mode 100644
+index 000000000000..0dfbcfceee14
+--- /dev/null
++++ b/cs300/cs300_test.c
+@@ -0,0 +1,14 @@
++#include <linux/kernel.h>
++#include <linux/syscalls.h>
++
++// Implement a HelloWorld system call
++// Argument is passed from call in user space.
++SYSCALL_DEFINE1(cs300_test, int, argument)
++{
++	long result = 0;
++	printk("Hello World!\n");
++	printk("--syscall argument %d\n", argument);
++	result = argument + 1;
++	printk("--returning %d + 1 = %ld\n", argument, result);
++	return result;
++}
+diff --git a/cs300/cs300_test.h b/cs300/cs300_test.h
+new file mode 100644
+index 000000000000..6464433c976e
+--- /dev/null
++++ b/cs300/cs300_test.h
+@@ -0,0 +1 @@
++asmlinkage long sys_cs300_test(int argument);
+diff --git a/cs300/process_ancestors.c b/cs300/process_ancestors.c
+new file mode 100644
+index 000000000000..eab437a82ac2
+--- /dev/null
++++ b/cs300/process_ancestors.c
+@@ -0,0 +1,58 @@
++#include <linux/kernel.h>
++#include <linux/unistd.h>
++#include <linux/sched.h>
++#include <linux/cred.h>
++#include <linux/compiler.h>
++#include <asm/percpu.h>
++#include <asm-generic/errno-base.h>
++#include <linux/errno.h>
++#include <linux/string.h>
++
++#include "process_ancestors.h"
++
++SYSCALL_DEFINE3(process_ancestors, struct process_info*, info_array, long, size, long*, num_filled){
++	
++	struct process_info process;
++	struct list_head *list;
++	struct task_struct *task;
++	struct task_struct task_struct;
++	
++	int children = 0;
++	int siblings = 0;
++	int i = 0;
++	int j = 0;	
++
++	if (size<=0) return -EINVAL;
++	
++	if (!info_array || !num_filled) return -EFAULT;
++
++	for (task = current; task != &init_task; task = task->parent) {
++		//reference: https://notes.shichao.io/lkd/ch3/
++		
++		process.pid = (long)task->pid; 
++		process.state = task->state;
++		while(j<16){
++			process.name[j] = task_struct.comm[j];
++			printk("%c", process.name[j]);
++			j++;
++		}
++
++		memset(process.name, '\0', sizeof(process.name));
++		strcpy(process.name, task->comm);
++
++		list_for_each(list, &current->children) {
++			children ++;
++		}
++		list_for_each(list, &current->sibling) {
++			siblings ++;
++		}
++		process.num_children = children;
++		process.num_siblings = siblings;	
++		children = 0;
++		siblings = 0;		
++
++		info_array[i] = process;
++		i++;
++	}
++	return 0;
++}
+diff --git a/cs300/process_ancestors.h b/cs300/process_ancestors.h
+new file mode 100644
+index 000000000000..68bceb03bb11
+--- /dev/null
++++ b/cs300/process_ancestors.h
+@@ -0,0 +1,19 @@
++#include <linux/syscalls.h>
++// Structure to hold values returned by process_ancestors sys-call
++#ifndef _PROCESS_ANCESTORS_H
++#define _PROCESS_ANCESTORS_H
++
++#define ANCESTOR_NAME_LEN 16
++struct process_info {
++	long pid;                     /* Process ID */
++	char name[ANCESTOR_NAME_LEN]; /* Program name of process */
++	long state;                   /* Current process state */
++	long uid;                     /* User ID of process owner */
++	long nvcsw;                   /* # of voluntary context switches */
++	long nivcsw;                  /* # of involuntary context switches */
++	long num_children;            /* # of children processes */
++	long num_siblings;            /* # of sibling processes */
++};
++
++asmlinkage long sys_process_ancestors(struct process_info info_array[], long size, long *num_filled);
++#endif
+-- 
+2.21.0
+

@@ -1,0 +1,8 @@
+1. Which model did the best for the colour-prediction task? Can you give a theory about why?
+
+	KNN model did the best for the colout-prediction task. Since there is no certain boundary from colors to colors, KNN model takes 14 nearest training points to generate the most common color among them, which maximize the chance of getting the most correct color for points in th center of the gradient with even slight difference.
+
+
+2. Have a look at the cities in your test data where the weather model makes the wrong prediction. Do you feel like the model is making reasonable mistakes? Can you think of any weather features that we could potentially add to make better predictions?
+
+	Yes, the mistakes are reasonable. Most of the mistakes it made is it blurs the cities locate near each others, like Vancouver, Seattle and Victoria. To add more features to identify clearly, I think we can collect humidity level, sunrise time, sunset time to make better predictions.

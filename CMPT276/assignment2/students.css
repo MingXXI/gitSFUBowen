@@ -1,0 +1,131 @@
+
+h1{
+	font-family: FreeSans, Arial;
+	padding-left: 10px;
+	font-weight: normal;
+}
+
+div {
+	display: inline-block;
+	font-family: Georgia;
+	font-size: 20px;
+	position: absolute;
+	padding-top: 4px;
+	padding-left: 0px;
+	padding-right: 5px;
+	padding-bottom: 3px;
+}
+a{
+	color: white;
+	font-family: Georgia;
+	text-decoration: none;
+}
+a:hover{
+	font-size:25px;
+}
+
+#message1{
+	color: #C71420;
+}
+#message2{
+	color: #C71420;
+}
+
+
+#background{
+	/*position: fixed;*/
+	top:100px;
+	/*margin-top: 20px;*/
+	left: 0px;
+	border: 0px;
+	width: 100px;
+	height: 80px;
+	background-color: #C71420;
+}
+
+#home {
+	top:120px;
+	/*margin-top: 58px;*/
+	margin-left:10px;
+}
+
+#readme{
+	top:150px;
+	margin-left: 10px;
+}
+
+#insert{
+	padding: 20px;
+	top: 100px;
+	left: 150px;
+	height: 300px;
+	width: 850px;
+	background-color: #E9F1F3;
+	position: absolute;
+	border: 1px solid #dae7ed;
+	border-radius: 3px;
+}
+#Insert{
+	padding: 20px;
+	left:120px;
+	top: 300px;
+	height:50px;
+	width: 120px;
+	font-size: 90px;
+	position: absolute;
+}
+
+#delete_update{
+	padding: 20px;
+	top: 450px;
+	left: 150px;
+	height: 300px;
+	width: 850px;
+	background-color: #E9F1F3;
+	position: absolute;
+	border: 1px solid #dae7ed;
+	border-radius: 3px;
+}
+
+#update{
+	top: 80px;
+	left: 20px;
+	height: 350px;
+	width: 420px;
+
+	position: absolute;
+}
+#Update{
+	left:120px;
+	top: 220px;
+	height:50px;
+	width: 120px;
+	font-size: 90px;
+	position: absolute;
+}
+
+#delete{
+	top: 80px;
+	left: 520px;
+	height: 350px;
+	width: 420px;
+	position: absolute;
+}
+#Delete{
+	left:120px;
+	top: 60px;
+	height:50px;
+	width: 120px;
+	font-size: 90px;
+	position: absolute;
+}
+
+#display{
+	padding: 20px;
+	top: -350px;
+	left: 450px;
+	height: 300px;
+	width: 200px;
+	background-color: #E9F1F3;
+	position: absolute;
+}

@@ -1,0 +1,90 @@
+
+h1{
+	font-family: FreeSans, Arial;
+	padding-left: 10px;
+	font-weight: normal;
+}
+
+h2{
+	font-size: 20px;
+	color: #C71420;
+	padding-left: 10px;
+	font-family: Georgia;
+}
+
+
+
+#bounds{
+	height: 700px;
+	width: 390px;
+	background-color: #E9F1F3;
+	position: absolute;
+	margin-left: 40px;
+	margin-top: 30px;
+	border: 1px solid #dae7ed;
+	border-radius: 3px;
+}
+
+#histogram{
+	height: 470px;
+	width: 390px;
+	background-color: #E9F1F3;
+	position: absolute;
+	margin-left: 470px;
+	margin-top: 30px;
+	border: 1px solid #dae7ed;
+	border-radius: 3px;
+}
+
+#list1 > li{
+	padding-top: 30px;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Georgia;
+}
+
+input{
+	border: 1px solid #cdd2d2;
+	text-align: right;
+	font-family: Georgia;
+	font-size: 16px;
+	font-weight: 500;
+	width: 100px;
+	height: 30px;
+	justify-content: center;
+	margin-left: 20px;
+	position: absolute;
+	left: 160px;
+}
+
+#list2{
+	/*margin-top: 25px;*/
+	line-height:220%;
+}
+
+#list2 > li{
+	padding-left: 10px;
+	font-weight: bold;
+	display: inline-block;
+	float: left;
+	font-family: Georgia;
+	position: absolute;
+}
+
+#list2 > div{
+	text-indent: 1px;
+	margin-left: 100px;
+	border: 1px ;
+	background-color: #C71420;
+	height: 35px;
+}
+
+
+
+
+
+
+
+
+
+
