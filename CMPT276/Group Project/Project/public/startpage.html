@@ -1,0 +1,259 @@
+<!-- Homepage interface refers to: -->
+
+<!-- http://orastie.info/publications/keywords/charro-websites.html -->
+
+
+<!-- https://blog.mint.com/trends/splitting-bill-survey/ -->
+
+
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>DiningPal</title>
+<link href="css/bootstrap.css" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="js/jquery.min.js"></script>
+<!-- Custom Theme files -->
+<link href="css/style.css" rel='stylesheet' type='text/css' />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script type="text/javascript" src="js/move-top.js"></script>
+<script type="text/javascript" src="js/easing.js"></script>
+					<script type="text/javascript">
+					jQuery(document).ready(function($) {
+						$(".scroll").click(function(event){
+							event.preventDefault();
+							$('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+						});
+					});
+					</script>
+<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane();
+			});
+		</script>
+</head>
+<body>
+
+	<div class="header">
+		<div class="container">
+			<div class="logo">
+
+			</div>
+			<div class="menu">
+				<ul class="menu-top">
+					<li><a  href="LoginPage.html">Log In/ Sign Up</a></li>
+										<!-- <li><a class="play-icon popup-with-zoom-anim" href="#small-dialog">Log In/ Sign Up</a></li> -->
+<!-- 					<li><a class="play-icon popup-with-zoom-anim" href="#small-dialog1">Sign up</a></li> -->
+				</ul>
+
+					  <script type="text/javascript" src="js/modernizr.custom.min.js"></script>
+					<link href="css/popuo-box.css" rel="stylesheet" type="text/css" media="all"/>
+					<script src="js/jquery.magnific-popup.js" type="text/javascript"></script>
+
+<!-- 				<div id="small-dialog" class="mfp-hide">
+						<div class="login">
+							<h3>Log In</h3>
+							<h4>Already a Member</h4>
+							<input type="text" value="Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email';}" />
+							<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
+							<input type="submit" value="Login" />
+						</div>
+					</div>
+					<div id="small-dialog1" class="mfp-hide">
+						<div class="signup">
+							<h3>Sign Up</h3>
+							<h4>Enter Your Details Here</h4>
+							<input type="text" value="First Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'First Name';}" />
+							<input type="text" value="Second Name" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Second Name';}" />
+							<input type="text" class="email"value="Enter Email" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Enter Email';}"  />
+							<input type="password" value="Password" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Password';}"/>
+							<input type="submit"  value="SignUp"/>
+						</div>
+					</div>	 -->
+				 <script>
+						$(document).ready(function() {
+						$('.popup-with-zoom-anim').magnificPopup({
+							type: 'inline',
+							fixedContentPos: false,
+							fixedBgPos: true,
+							overflowY: 'auto',
+							closeBtnInside: true,
+							preloader: false,
+							midClick: true,
+							removalDelay: 300,
+							mainClass: 'my-mfp-zoom-in'
+						});
+
+						});
+				</script>
+
+			<a href="#" class="right_bt" id="activator"><img src="images/nav.png" alt=""/></a>
+				<div class="box" id="box">
+				   <div class="box_content_center">
+					   <div class="menu_box_list">
+						   <ul>
+							   <li><a href="#home" class="scroll">Home</a></li>
+							   <li class="active"><a href="#about" class="scroll">About</a></li>
+							   <li><a href="#contact" class="scroll">Contact</a></li>
+							</ul>
+						</div>
+						<a class="boxclose" id="boxclose"><img src="images/close.png" alt=""/></a>
+					  </div>
+					</div>
+					<script type="text/javascript" src="js/easing.js"></script>
+					    <script type="text/javascript">
+								var $ = jQuery.noConflict();
+									$(function() {
+										$('#activator').click(function(){
+												$('#box').animate({'top':'0px'},500);
+										});
+										$('#boxclose').click(function(){
+												$('#box').animate({'top':'-700px'},500);
+										});
+									});
+									$(document).ready(function(){
+
+									//Hide (Collapse) the toggle containers on load
+									$(".toggle_container").hide();
+
+									//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+									$(".trigger").click(function(){
+										$(this).toggleClass("active").next().slideToggle("slow");
+										return false; //Prevent the browser jump to the link anchor
+									});
+
+									});
+						</script>
+
+				</div>
+				<div class="clearfix"></div>
+				<div class="header-bottom">
+					<p>Find your soul-Diner</p>
+					<h1>Enjoy!</h1>
+					<a href="LoginPage.html">Get Started</a>
+				</div>
+		</div>
+	</div>
+	<div class="aboutus" id="about">
+		<div class="container">
+			<div class="row aboutus-row">
+				<div class="col-md-4 aboutus-row-column">
+					<i class="icon1"></i>
+					<h3>GET INSPIRED</h3>
+					<p>Want try new restaurant? <br> Want meet new friend?</p>
+					<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma.Aliquam erat volutpat. </p> -->
+				</div>
+				<div class="col-md-4 aboutus-row-column">
+					<i class="icon2"></i>
+					<h3>GET LOCATION</h3>
+					<p>Tell us where you are <br> we find you a pal to dine with</p>
+					<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma.Aliquam erat volutpat. </p> -->
+				</div>
+				<div class="col-md-4 aboutus-row-column">
+					<i class="icon3"></i>
+					<h3>GET SOCIAL</h3>
+					<p>It is so good to make new friend<br>with delicious food! </p>
+					<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisc Pellentesque vel enim a elit viverra elementuma.Aliquam erat volutpat. </p> -->
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="interduce">
+		<div class="container">
+			<div class="row interduce-row">
+				<div class="col-md-6 inter-row-column">
+					<h4><span>INTRODUCING</span> THE DINING PAL</h4>
+					<p>DiningPal is an online web application allowing multiple users to make plans of dining together. After sign up/login, users can propose their favorite restaurant(s) (with ranks) and find friends (or strangers), who also prefers similar restaurant during that specific time, to have dinner together. The features of this application will include locating the user him/herself, locating/ranking/choosing/auto-(help)choosing restaurants, with future implementations including creation of chat rooms, friend/user filter system, map navigate, coupon search, weather condition check and so on. Though this application can be used to arrange other places of collective activities, such as gym, theaters, shopping malls etc, it is primarily designed to help people find dinner mates in an easy and comfortable fashion.
+					 </p>
+<!-- 					<ul class="inter-duce">
+						<li><i class="icon4"></i></li>
+						<li><i class="icon5"></i></li>
+					</ul> -->
+				</div>
+
+				<img src="images/5.jpg" class="foot-img" alt="" style='height:370px; width:520px;'>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="map" id="contact">
+		<div class="container">
+			<div class="map-header">
+				<h3>around to me</h3>
+				<div class="row map-row">
+					<div class="col-md-5 map-row-column">
+						<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d325.3639436149784!2d-122.91950913806456!3d49.27807322246644!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x548679c0857a2227%3A0x506c3f6e30b55b!2sSimon+Fraser+University!5e0!3m2!1sen!2sca!4v1562042059879!5m2!1sen!2sca" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+					</div>
+					<div class="col-md-7 map-row-column">
+						<section  class="sky-form">
+							<div class="row row1 scroll-pane">
+							<div class="map-column">
+								<h4 class="map-column-head">Bamboo Garden</h4>
+								<h4 class="map-column-head-right">0.1 KM</h4>
+								<div class="clearfix"></div>
+								<p>8911 Cornerstone Mews, Burnaby, BC</p>
+							</div>
+							<div class="map-column">
+								<h4 class="map-column-head">CaliBurger</h4>
+								<h4 class="map-column-head-right">0.2 KM</h4>
+								<div class="clearfix"></div>
+								<p>8901 Cornerstone Mews, Burnaby, BC</p>
+							</div>
+							<div class="map-column">
+								<h4 class="map-column-head">Yan's Cafe</h4>
+								<h4 class="map-column-head-right">4.3 KM</h4>
+								<div class="clearfix"></div>
+								<p>9928 Lougheed Hwy, Burnaby, BC</p>
+							</div>
+							<div class="map-column">
+								<h4 class="map-column-head">Sushi Town</h4>
+								<h4 class="map-column-head-right">3.8 KM</h4>
+								<div class="clearfix"></div>
+								<p>5935 Hastings St, Burnaby, BC</p>
+							</div>
+
+							</div>
+		        		</section>
+
+					</div>
+					<div class="clearfix"> </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="footer">
+		<div class="container">
+<!-- 			<div class="logo">
+				 <a href="startpage.html"><img src="images/f_logo.png" class="foot-img" alt=""></a>
+			</div> -->
+			<p> &copy; 2019 DiningPal Team. All Rights Reserved | Design by Team Segfault</p>
+			<div class="clearfix"></div>
+		</div>
+		<script type="text/javascript">
+						$(document).ready(function() {
+							/*
+							var defaults = {
+					  			containerID: 'toTop', // fading element id
+								containerHoverID: 'toTopHover', // fading element hover id
+								scrollSpeed: 1200,
+								easingType: 'linear'
+					 		};
+							*/
+
+							$().UItoTop({ easingType: 'easeOutQuart' });
+
+						});
+					</script>
+				<a href="#" id="toTop" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+	</div>
+
+<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>
+</body>
+</html>

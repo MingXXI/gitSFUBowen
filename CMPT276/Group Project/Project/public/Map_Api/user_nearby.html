@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Mosaddek">
+    <meta name="keyword" content="slick, flat, dashboard, bootstrap, admin, template, theme, responsive, fluid, retina">
+    <link rel="shortcut icon" href="javascript:;" type="image/png">
+
+    <title>google map</title>
+
+    <!--right slidebar-->
+    <link href="css/slidebars.css" rel="stylesheet">
+
+    <!--switchery-->
+    <link href="js/switchery/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+
+    <!--common style-->
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/style-responsive.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="js/html5shiv.js"></script>
+    <script src="js/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<script type="text/javascript">
+function changeName(){
+    $.get("/getUsername", (data)=>{
+        console.log("change username");
+        console.log(data.western)
+        console.log(data.europe)
+        console.log(data.asia)
+        console.log(data.indian)
+        console.log(data.mexican)
+        console.log(typeof data.mexican)
+        console.log(document.getElementById("western").checked)
+        // $('input[id=western]').attr('checked',data.western);
+      })
+    }
+</script>
+<body class="sticky-header">
+
+    <section>
+        <!-- sidebar left start-->
+                <!-- sidebar left start-->
+        <div class="sidebar-left">
+            <!--responsive view logo start-->
+            <div class="logo dark-logo-bg visible-xs-* visible-sm-*">
+                <a href="new_homepage.html">
+                    <img src="img/logo-icon.png" alt="">
+                    <!--<i class="fa fa-maxcdn"></i>-->
+                    <span class="brand-name">DiningPal</span>
+                </a>
+            </div>
+            <!--responsive view logo end-->
+
+            <div class="sidebar-left-info">
+                <!-- visible small devices start-->
+                <div class=" search-field">  </div>
+                <!-- visible small devices end-->
+
+                <!--sidebar nav start-->
+                <ul class="nav nav-pills nav-stacked side-navigation">
+                    <li>
+                        <h3 class="navigation-title">Navigation</h3>
+                    </li>
+                    <li><a href="new_homepage.html"><i class="fa fa-home"></i> <span>Dashboard</span></a></li>
+                    <form id = "getdb" action="/database"></form>
+                    <li><a href="#" onclick= "document.getElementById('getdb').submit()"><i class="fa fa-th-list"></i> <span>User Database</span></a>
+                    </li>
+
+                    <li><a href="public_chatting.html"><i class="fa fa-bar-chart-o"></i> <span>Chatroom </span></a>
+                    </li>
+
+                    <li  class="active"><a href="google-map.html"><i class="fa fa-map-marker"></i> <span>Maps</span></a>
+                    </li>
+
+                    <li><a href="recipe.html"><i class="icon-magnifier"></i> <span>&nbsp &nbsp Food Digger</span></a>
+                    </li>
+
+                    <li>
+                        <h3 class="navigation-title">Components</h3>
+                    </li>
+                    <li class="menu-list"><a href=""><i class="fa fa-cogs"></i> <span>Components</span></a>
+                        <ul class="child-list">
+                            <li><a href="calendar.html"> Calendar</a></li>
+                            <li><a href="timeline.html"> Timeline </a></li>
+                            <li><a href="gallery.html"> Gallery </a></li>
+                        </ul>
+                    </li>
+
+                    <li class="menu-list"><a href=""><i class="fa fa-tasks"></i> <span>Accounts</span></a>
+                        <ul class="child-list">
+                            <!-- <li><a href="form-wizard.html"> Account Register</a></li> -->
+                            <li><a href="form-validation.html"> Profile </a></li>
+                        </ul>
+                    </li>
+<!--
+
+                    <li>
+                        <h3 class="navigation-title">Extra</h3>
+                    </li> -->
+
+
+<!--                     <li class="menu-list"><a href=""><i class="fa fa-file-text"></i> <span>Extra Pages</span></a>
+                        <ul class="child-list">
+                            <li><a href="profile.html"> Profile</a></li>
+                            <li><a href="invoice.html"> Invoice</a></li>
+                            <li><a href="login.html"> Login </a></li>
+                            <li><a href="registration.html"> Registration </a></li>
+                            <li><a href="lock.html"> Lock Screen </a></li>
+                            <li><a href="404.html"> 404 Error</a></li>
+                            <li><a href="500.html"> 500 Error</a></li>
+
+                        </ul>
+                    </li> -->
+
+                </ul>
+                <!--sidebar nav end-->
+
+                <!--sidebar widget start-->
+                <div class="sidebar-widget">
+                    <h4>Server Status</h4>
+                    <ul class="list-group">
+                        <li>
+                            <span class="label label-danger pull-right">33%</span>
+                            <p>Server Usage</p>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-danger" style="width: 33%;">
+                                    <span class="sr-only">33%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <span class="label label-warning pull-right">65%</span>
+                            <p>Bandwidth</p>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-warning" style="width: 65%;">
+                                    <span class="sr-only">65%</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li><a href="javascript:;" class="btn btn-success btn-sm ">View Details</a></li>
+                    </ul>
+                </div>
+                <!--sidebar widget end-->
+
+            </div>
+        </div>
+        <!-- sidebar left end-->
+
+        <!-- body content start-->
+        <div class="body-content" style="min-height: 1000px;">
+
+            <!-- header section start-->
+            <div class="header-section">
+
+                <!--logo and logo icon start-->
+                <div class="logo dark-logo-bg hidden-xs hidden-sm">
+                    <a href="new_homepage.html">
+                        <img src="img/logo-icon.png" alt="">
+                        <!--<i class="fa fa-maxcdn"></i>-->
+                        <span class="brand-name">DiningPal</span>
+                    </a>
+                </div>
+
+                <div class="icon-logo dark-logo-bg hidden-xs hidden-sm">
+                    <a href="new_homepage.html">
+                        <img src="img/logo-icon.png" alt="">
+                        <!--<i class="fa fa-maxcdn"></i>-->
+                    </a>
+                </div>
+                <!--logo and logo icon end-->
+
+                <!--toggle button start-->
+                <a class="toggle-btn"><i class="fa fa-outdent"></i></a>
+                <!--toggle button end-->
+
+
+                <div class="notification-wrap">
+                <!--left notification start-->
+                <div class="left-notification">
+                <ul class="notification-menu">
+                <!--mail info start-->
+                <li class="d-none">
+
+
+                    <div class="dropdown-menu dropdown-title">
+
+
+                    </div>
+                </li>
+                <!--mail info end-->
+
+                <!--task info start-->
+                <li class="d-none">
+
+                    <div class="dropdown-menu dropdown-title">
+
+
+                    </div>
+                </li>
+                <!--task info end-->
+
+                <!--notification info start-->
+                <li>
+
+
+
+
+                </li>
+                <!--notification info end-->
+                </ul>
+                </div>
+                <!--left notification end-->
+
+
+                <!--right notification start-->
+                <div class="right-notification">
+                    <ul class="notification-menu">
+
+
+                        <li>
+                            <a href="javascript:;" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                                <img src="img/avatar-mini.jpg" alt=""><span id="user_name" >user</span>
+                                <span class=" fa fa-angle-down"></span>
+                            </a>
+                            <ul class="dropdown-menu dropdown-usermenu purple pull-right">
+                                <li><a href="javascript:;">  Profile</a></li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="badge bg-danger pull-right">40%</span>
+                                        <span>Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:;">
+                                        <span class="label bg-info pull-right">new</span>
+                                        Help
+                                    </a>
+                                </li>
+                                <form id = 'logout_form' action="../logout">
+                                </form>
+                                <li><a href="#" onclick="document.getElementById('logout_form').submit()"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
+
+                            </ul>
+                        </li>
+                        <li>
+
+                        </li>
+
+                    </ul>
+                </div>
+                <!--right notification end-->
+                </div>
+
+            </div>
+            <!-- header section end-->
+
+            <!-- page head start-->
+            <div class="page-head">
+                <!--<span class="sub-title">Welcome to Static Table</span>-->
+
+            </div>
+            <!-- page head end-->
+
+            <!--body wrapper start-->
+            <div class="wrapper">
+
+                <div class="row">
+                    <div class="col-lg-6" style="height: 150%;width: 100%;">
+                        <section class="panel">
+                            <header class="panel-heading">
+                                Map
+                                <span class="tools pull-right" >
+                                    <a class="fa fa-repeat box-refresh" href="javascript:;"></a>
+                                    <a class="t-collapse fa fa-chevron-down" href="javascript:;"></a>
+                                    <a class="t-close fa fa-times" href="javascript:;"></a>
+                                </span>
+                            </header>
+                            <div class="panel-body" >
+                                <!--<div id="gmap_basic" class="gmaps" ></div>-->
+                                <div class="gmaps" ></div>
+                                <iframe src='map_restaurant.html' style="height:610px; width:100%;"></iframe>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!--body wrapper end-->
+
+
+            <!--footer section start-->
+            <footer>
+                <p style="font-size: 20px;"> &copy; 2019 DiningPal Team. All Rights Reserved | Design by Team Segfault</p>
+            </footer>
+            <!--footer section end-->
+
+
+            <!-- Right Slidebar start -->
+            <div class="sb-slidebar sb-right sb-style-overlay">
+            <div class="right-bar">
+
+            <span class="r-close-btn sb-close"><i class="fa fa-times"></i></span>
+
+            <ul class="nav nav-tabs nav-justified-">
+                <li class="active">
+                    <a href="#chat" data-toggle="tab">Chat</a>
+                </li>
+                <li class="">
+                    <a href="#info" data-toggle="tab">Info</a>
+                </li>
+                <li class="">
+                    <a href="#settings" data-toggle="tab">Settings</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active " id="chat">
+                <div class="online-chat">
+                    <div class="online-chat-container">
+                        <div class="chat-list">
+                            <h3>Chat list</h3>
+                            <h5>34 Friends Online, 80 Offline</h5>
+                            <a href="#" class="add-people tooltips" data-original-title="Add People" data-toggle="tooltip" data-placement="left">
+                                <i class="fa fa-plus"></i>
+                            </a>
+                        </div>
+                        <div class="side-title">
+                            <h2>online</h2>
+                            <div class="title-border-row">
+                                <div class="title-border"></div>
+                            </div>
+                        </div>
+
+                        <ul class="team-list chat-list-side">
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img2.jpg" alt="">
+                                <i class="online dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Alison Jones
+                                </span>
+                                        <small class="text-muted">Start exploring</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img3.jpg" alt="">
+                                <i class="online dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Jonathan Smith
+                                </span>
+                                        <small class="text-muted">Alien Inside</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img1.jpg" alt="">
+                                <i class="away dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Anjelina Doe
+                                </span>
+                                        <small class="text-muted">Screaming...</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img3.jpg" alt="">
+                                <i class="busy dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Franklin Adam
+                                </span>
+                                        <small class="text-muted">Don't lose the hope</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img2.jpg" alt="">
+                                <i class="online dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Jeff Crowford
+                                </span>
+                                        <small class="text-muted">Just flying</small>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                        <div class="side-title">
+                            <h2>Offline</h2>
+                            <div class="title-border-row">
+                                <div class="title-border"></div>
+                            </div>
+                        </div>
+                        <ul class="team-list chat-list-side">
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img2.jpg" alt="">
+                                <i class="offline dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Alison Jones
+                                </span>
+                                        <small class="text-muted">Start exploring</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img3.jpg" alt="">
+                                <i class="offline dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Jonathan Smith
+                                </span>
+                                        <small class="text-muted">Alien Inside</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img1.jpg" alt="">
+                                <i class="offline dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Anjelina Doe
+                                </span>
+                                        <small class="text-muted">Screaming...</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img3.jpg" alt="">
+                                <i class="offline dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Franklin Adam
+                                </span>
+                                        <small class="text-muted">Don't lose the hope</small>
+                                    </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                        <span class="thumb-small">
+                                <img class="circle" src="img/img2.jpg" alt="">
+                                <i class="offline dot"></i>
+                            </span>
+                                    <div class="inline">
+                                            <span class="name">
+                                    Jeff Crowford
+                                </span>
+                                        <small class="text-muted">Just flying</small>
+                                    </div>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane " id="info">
+            <div class="chat-list info">
+                <h3>Latest Information</h3>
+                <a href="#" class="add-people tooltips" data-original-title="Refresh" data-toggle="tooltip" data-placement="left">
+                    <i class="fa fa-repeat"></i>
+                </a>
+            </div>
+            <div class="aside-widget">
+                <div class="side-title-alt">
+                    <h2>Revenue</h2>
+                    <a href="#" class="close side-w-close">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <ul class="team-list chat-list-side info">
+                    <li>
+                                <span class="thumb-small">
+                            <i class="fa fa-circle green-color"></i>
+                        </span>
+                        <div class="inline">
+                                    <span class="name">
+                                Received Money from John Doe
+                            </span>
+                            <span class="value green-color">$12300</span>
+                        </div>
+                    </li>
+                    <li>
+                                <span class="thumb-small">
+                            <i class="fa fa-circle purple-color"></i>
+                        </span>
+                        <div class="inline">
+                                    <span class="name">
+                                Total Admin Template Sales
+                            </span>
+                            <span class="value purple-color">$40100</span>
+                        </div>
+                    </li>
+                    <li>
+                                <span class="thumb-small">
+                            <i class="fa fa-circle red-color"></i>
+                        </span>
+                        <div class="inline">
+                                    <span class="name">
+                                Monty Revenue
+                            </span>
+                            <span class="value red-color">$322300</span>
+                        </div>
+                    </li>
+                    <li>
+                                <span class="thumb-small">
+                            <i class="fa fa-circle blue-color"></i>
+                        </span>
+                        <div class="inline">
+                                    <span class="name">
+                                Received Money from John Doe
+                            </span>
+                            <span class="value blue-color">$1520</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="aside-widget">
+
+                <div class="side-title-alt">
+                    <h2>Statistics</h2>
+                    <a href="#" class="close side-w-close">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <ul class="team-list chat-list-side info statistics border-less-list">
+                    <li>
+                        <div class="inline">
+                                    <span class="name">
+                                         Foreign Visit
+                                    </span>
+                            <small class="text-muted">25% Increase</small>
+                        </div>
+                                <span class="thumb-small">
+                                    <span id="foreign-visit" class="chart"></span>
+                                </span>
+                    </li>
+                    <li>
+                        <div class="inline">
+                                    <span class="name">
+                                Montly Visit
+                            </span>
+                            <small class="text-muted">Average visit 12% Increase</small>
+                        </div>
+                                <span class="thumb-small">
+                                    <span id="monthly-visit" class="chart"></span>
+                                </span>
+                    </li>
+                    <li>
+                        <div class="inline">
+                                    <span class="name">
+                                Unique Visit
+                            </span>
+                            <small class="text-muted">35% unique visitor </small>
+                        </div>
+                                <span class="thumb-small">
+                                    <span id="unique-visit" class="chart"></span>
+                                </span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="aside-widget">
+                <div class="side-title-alt">
+                    <h2>Notification</h2>
+                    <a href="#" class="close side-w-close">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <ul class="team-list chat-list-side info border-less-list">
+                    <li>
+                                <span class="thumb-small">
+                            <i class="fa fa-bell green-color"></i>
+                        </span>
+                        <div class="inline">
+                                    <span class="name">
+                                Meeting with John Doe at
+                            </span>
+                            <span class="value text-muted">11.30 am</span>
+                        </div>
+                    </li>
+                    <li>
+                                <span class="thumb-small">
+                            <i class="fa fa-users green-color"></i>
+                        </span>
+                        <div class="inline">
+                                    <span class="name">
+                                3 membership request pending
+                            </span>
+                            <span class="value text-muted">John, Smith, Lira</span>
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
+
+
+            <div class="aside-widget">
+
+
+                <div class="side-title-alt">
+                    <h2>System</h2>
+                    <a href="#" class="close side-w-close">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <ul class="team-list chat-list-side info border-less-list">
+                    <li>
+                        <div class="inline">
+                                    <span class="name">
+                                Received database error report from hosting provider
+                            </span>
+                            <span class="value text-muted">11.30 am</span>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="inline">
+                                    <span class="name">
+                                Hosting Renew notification
+                            </span>
+                            <span class="value text-muted">12.00 pm</span>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+
+
+            <div class="aside-widget">
+                <div class="side-title-alt">
+                    <h2>Work Progress</h2>
+                    <a href="#" class="close side-w-close">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
+                <ul class="team-list chat-list-side info border-less-list sale-monitor">
+                    <li>
+                        <div class="states">
+                            <div class="info">
+                                <div class="desc pull-left">Server Setup and Configuration</div>
+                            </div>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-success" role="progressbar"
+                                -valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 50%"></div>
+                            </div>
+                            <div class="info">
+                                <small class="percent pull-left text-muted">50% completed</small>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="states">
+                            <div class="info">
+                                <div class="desc pull-left">Website Design & Development</div>
+                            </div>
+                            <div class="progress progress-xs">
+                                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="40" aria-valuemin="0" aria-valuemax="100" style="width: 85%"></div>
+                            </div>
+                            <div class="info">
+                                <small class="percent pull-left text-muted">85% completed</small>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            </div>
+
+            <div role="tabpanel" class="tab-pane " id="settings">
+                <div class="chat-list bottom-border settings-head">
+                    <h3>Account Setting</h3>
+                    <h5>Configure your account as per your need.</h5>
+                </div>
+                <ul class="team-list chat-list-side info statistics border-less-list setting-list">
+                    <li>
+                        <div class="inline">
+                                <span class="name">
+                                Make my feature post public?
+                            </span>
+                            <small class="text-muted">Everyone will be able to see, like, comment
+                                and share your feature post.</small>
+                        </div>
+                            <span class="thumb-small">
+                            <input type="checkbox" class="js-switch-small" checked/>
+                        </span>
+                    </li>
+                    <li>
+                        <div class="inline">
+                                <span class="name">
+                                Show offline Contacts
+                            </span>
+                            <small class="text-muted">Lorem ipsum dolor sit amet, consectetuer
+                                adipiscing elit.</small>
+                        </div>
+                            <span class="thumb-small">
+                            <input type="checkbox" class="js-switch-small2" checked/>
+                        </span>
+                    </li>
+
+                    <li>
+                        <div class="inline">
+                                <span class="name">
+                                Everyone will see my stuff
+                            </span>
+                            <small class="text-muted">Lorem ipsum dolor sit amet, consectetuer
+                                adipiscing elit.</small>
+                        </div>
+                            <span class="thumb-small">
+                            <input type="checkbox" class="js-switch-small3"/>
+                        </span>
+                    </li>
+
+                </ul>
+
+                <div class="chat-list bottom-border settings-head">
+                    <h3>General Setting</h3>
+                    <h5>Configure your account as per your need.</h5>
+                </div>
+                <ul class="team-list chat-list-side info statistics border-less-list setting-list">
+                    <li>
+                        <div class="inline">
+                                <span class="name">
+                                Show me Online
+                            </span>
+                        </div>
+                            <span class="thumb-small">
+                            <input type="checkbox" class="js-switch-small4" checked/>
+                        </span>
+                    </li>
+                    <li>
+                        <div class="inline">
+                                <span class="name">
+                                Status visible to all
+                            </span>
+                        </div>
+                            <span class="thumb-small">
+                            <input type="checkbox" class="js-switch-small5" />
+                        </span>
+                    </li>
+
+                    <li>
+                        <div class="inline">
+                                <span class="name">
+                                Show my work progess to all
+                            </span>
+                        </div>
+                            <span class="thumb-small">
+                            <input type="checkbox" class="js-switch-small6" checked/>
+                        </span>
+                    </li>
+
+                </ul>
+
+            </div>
+
+            </div>
+            </div>
+            </div>
+            <!-- Right Slidebar end -->
+
+        </div>
+        <!-- body content end-->
+    </section>
+
+<!-- Placed js at the end of the document so the pages load faster -->
+<script src="js/jquery-1.10.2.min.js"></script>
+<script src="js/jquery-migrate.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/modernizr.min.js"></script>
+
+<!--Nice Scroll-->
+<script src="js/jquery.nicescroll.js" type="text/javascript"></script>
+
+<!--right slidebar-->
+<script src="js/slidebars.min.js"></script>
+
+<!--switchery-->
+<script src="js/switchery/switchery.min.js"></script>
+<script src="js/switchery/switchery-init.js"></script>
+
+<!--Sparkline Chart-->
+<script src="js/sparkline/jquery.sparkline.js"></script>
+<script src="js/sparkline/sparkline-init.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzScIT7zlbo9hxwVepZ1yPfaAAoTtxo7E
+&callback=initMap"></script>
+
+
+<script type="text/javascript" >
+window.onload=getLocation();
+var x=document.getElementById("demo");
+function getLocation()
+  {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition,showError);
+    }
+  else{x.innerHTML="Geolocation is not supported by this browser.";}
+
+  $.get("/getUsername", (data)=>{
+    console.log("change username");
+    document.getElementById("user_name").innerHTML=data.username;
+  })
+
+  }
+
+function showPosition(position)
+  {
+  lat=position.coords.latitude;
+  lon=position.coords.longitude;
+  latlon=new google.maps.LatLng(lat, lon)
+  mapholder=document.getElementById('gmap_basic')
+  // mapholder.style.height='650px';
+  // mapholder.style.width='1700px';
+  $("#gmap_basic").width('100%');
+  $("#gmap_basic").height('1000px');
+
+  var myOptions={
+  center:latlon,zoom:14,
+  mapTypeId:google.maps.MapTypeId.ROADMAP,
+  mapTypeControl:false,
+  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+  };
+  var map=new google.maps.Map(document.getElementById("gmap_basic"),myOptions);
+  var marker=new google.maps.Marker({position:latlon,map:map,title:"You are here!"});
+  }
+
+function showError(error)
+  {
+  switch(error.code)
+    {
+    case error.PERMISSION_DENIED:
+      x.innerHTML="User denied the request for Geolocation."
+      break;
+    case error.POSITION_UNAVAILABLE:
+      x.innerHTML="Location information is unavailable."
+      break;
+    case error.TIMEOUT:
+      x.innerHTML="The request to get user location timed out."
+      break;
+    case error.UNKNOWN_ERROR:
+      x.innerHTML="An unknown error occurred."
+      break;
+    }
+  }
+
+</script>
+
+<script src="js/gmaps.js"></script>
+
+<!--common scripts for all pages-->
+<script src="js/scripts.js"></script>
+
+<script src="js/gmaps-init.js"></script>
+
+<script>
+    jQuery(document).ready(function() {
+        GoogleMaps.init();
+    });
+</script>
+
+</body>
+</html>

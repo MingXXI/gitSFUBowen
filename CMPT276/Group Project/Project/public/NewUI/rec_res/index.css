@@ -1,0 +1,147 @@
+* {
+    box-sizing: border-box;
+}
+
+html {
+    background: url(food-for-thought-restaurants-pe.jpg) no-repeat center center fixed; 
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+header {
+    background-color: indianred;
+}
+
+body {
+    margin: 0px;
+    height: 100%;
+}
+
+.background-image {
+    min-height: 100%;
+    min-width: 1024px;
+    height: auto;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.background-image, img, .rest-img-container {
+    width: 100%;
+}
+
+body, .submit {
+    font-family: 'Raleway', sans-serif;
+}
+
+.app-name {
+    padding-left: 10px;
+}
+
+.link {
+    display: block;
+}
+
+.js-return-start, button {
+    cursor: pointer;
+}
+
+.rest-result-intro, .try-again-message {
+    font-size: 22px;
+}
+
+.start-text, .rest-result-intro, .try-again-message {
+    text-shadow: 1px 1px 1px black;
+}
+
+.start-text, .rest-result-intro, .try-again-message, .app-name {
+    color: white;
+}
+
+.search-text, .link {
+    color: black;
+    font-weight: bold;
+}
+
+.container {
+    padding: 30px;
+    padding-top: 100px;
+}
+
+.centered {
+    text-align: center;
+}
+
+.submit {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.submit, .change-num-button {
+    border-radius: 5px;
+}
+
+.change-num-button {
+    font-size: 12px;
+}
+
+.large {
+    height: 100px;
+    float: none;
+}
+
+.small {
+    width: 100px;
+}
+
+.js-rest-search, .js-recipe-search, .search-container, .js-cities, button {
+    background-color: white;
+}
+
+.js-rest-search, .js-recipe-search, .search-container, .js-cities, .js-change-num {
+    padding: 10px;
+}
+
+.inline {
+    display: inline;
+}
+
+input {
+    border: 1px solid gainsboro;
+}
+
+.rest-img {
+    width: auto;
+}
+
+.rest-img, .rest-img-container {
+    height: 200px;
+}
+
+.hidden {
+    visibility: hidden;
+}
+
+header, .city-option {
+    padding: 5px;
+}
+
+.city-option {
+    text-align: left;
+}
+
+.rest-img-container {
+    overflow: hidden;
+}
+
+.js-cities {
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.pad-top-10 {
+    padding-top: 10px;
+}

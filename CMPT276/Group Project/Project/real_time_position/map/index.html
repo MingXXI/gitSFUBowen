@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Geolocation</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+		<meta charset="utf-8">
+		<!-- <script src="./map.js"></script> -->
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="/map/js/jquery-2.1.4.min.js"></script>
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAzScIT7zlbo9hxwVepZ1yPfaAAoTtxo7E&callback=initMap" type="text/javascript"></script>
+		
+		<style>
+			html, body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+			#map {
+				height: 100%;
+			}
+		</style>
+	</head>
+	<!-- <body>
+		<div id="mapholder"></div>
+		<script type="text/javascript">
+			var map;
+			window.onload=initMap();
+			var x=document.getElementById("demo");
+			function initMap()
+			  {
+			  if (navigator.geolocation)
+			    {
+			    navigator.geolocation.getCurrentPosition(showPosition,showError);
+			    }
+			  else{x.innerHTML="Geolocation is not supported by this browser.";}
+			  }
+
+			function showPosition(position)
+			  {
+			  var latlon = {
+			  	lat: parseFloat(position.coords.latitude),
+			  	lng: parseFloat(position.coords.longitude)
+			  };
+			  // var latlon=new google.maps.LatLng(lat, lon);
+			  mapholder=document.getElementById('mapholder');
+			  mapholder.style.height='100%';
+			  mapholder.style.width='100%';
+
+			 // $.post('/get_Username',function(data){
+			 //   console.log('123124');
+			 // })
+
+			  var myOptions={
+			  center:latlon,zoom:14,
+			  mapTypeId:google.maps.MapTypeId.ROADMAP,
+			  mapTypeControl:false,
+			  navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+			  };
+			  map=new google.maps.Map(document.getElementById("mapholder"),myOptions);
+			  // var image = 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png';
+			  var marker=new google.maps.Marker({position:latlon,map:map,animation: google.maps.Animation.DROP,title:"You Are Here!"});
+			  // var location_test = {lat: 49.2927, lng: -123.1207};
+			  // var marker=new google.maps.Marker({position:location_test,map:map,animation: google.maps.Animation.DROP,title:"You Are Here!"});
+			  }
+
+			function showError(error)
+			  {
+			  switch(error.code)
+			    {
+			    case error.PERMISSION_DENIED:
+			      x.innerHTML="User denied the request for Geolocation."
+			      break;
+			    case error.POSITION_UNAVAILABLE:
+			      x.innerHTML="Location information is unavailable."
+			      break;
+			    case error.TIMEOUT:
+			      x.innerHTML="The request to get user location timed out."
+			      break;
+			    case error.UNKNOWN_ERROR:
+			      x.innerHTML="An unknown error occurred."
+			      break;
+			    }
+			  }
+
+			var markers = [];
+			var getMarkerUniqueId= function(lat, lng) {
+				return lat + '_' + lng;
+			}
+			function addMarker(location) { // Adds a marker to the map and push to the array.
+				// var myOptions={
+				//   center:location,zoom:14,
+				//   mapTypeId:google.maps.MapTypeId.ROADMAP,
+				//   mapTypeControl:false,
+				//   navigationControlOptions:{style:google.maps.NavigationControlStyle.SMALL}
+				//   };
+				// map= google.maps.Map(document.getElementById("mapholder"),myOptions);
+				var markerId = getMarkerUniqueId(location.lat, location.lng); // that will be used to cache this marker in markers object.
+				window.alert("yoyo")
+				var new_marker = new google.maps.Marker({
+					position: location,
+					map: map,
+					animation: google.maps.Animation.DROP,
+					id: markerId
+				});
+
+				markers[markerId] = new_marker;
+			}
+			var location_test = {lat: 49.2927, lng: -123.1207};
+			addMarker(location_test);
+
+			var removeMarker = function(marker, markerId) {
+				new_marker.setMap(null); // set markers setMap to null to remove it from map
+				delete markers[markerId]; // delete marker instance from markers object
+			};
+
+			var socket = io();
+			$(document).ready(function(){
+				check_pos = setInterval(function(){ //create a loop and wait for the response
+					if(typeof pos != 'undefined'){ //while the position is not defined the loop is checking every half seconds
+						socket.emit('new_user', {pos: pos});
+						clearInterval(check_pos);
+					}
+				}, 500);
+				socket.on('already', function(data){
+					$.each( data.visitors, function( key, pos ) {
+						addMarker(pos);
+					});
+				});
+				socket.on('connected', function(data){
+					$("#users_count").html("<strong>" + data.users_count +"</strong>" + " connected users");
+					$("#users_count").css({'visibility': 'visible'});
+					addMarker(data.pos);
+				});
+				socket.on('disconnected', function(data){
+					//we can now delete this position:
+					var markerId = getMarkerUniqueId(data.del.lat, data.del.lng); // get marker id by using clicked point's coordinate
+					var marker = markers[markerId]; // find marker
+					removeMarker(marker, markerId); // remove it
+					$("#users_count").html("<strong>" + data.users_count +"</strong>" + " connected users");
+				});
+			});
+
+		</script>
+		
+	</body> -->
+
+	<body>
+		<div id="map"></div>
+		<script type="text/javascript">
+
+		var map;
+		
+		function initMap() {
+			window.alert("yi")
+			map = new google.maps.Map(document.getElementById('map'), {
+				center: {lat: 49.037, lng: 14.974},
+				zoom: 14
+			});
+			window.alert("yi")
+		}
+
+		function getLocation() {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition, hidePosition);
+			}else{ 
+				alert("Geolocation is not supported by this browser. Now we trying to get your location through your IP address.");
+				ipPosition();
+			}
+		}
+		function showPosition(position) {
+			pos = {
+				lat: parseFloat(position.coords.latitude),
+				lng: parseFloat(position.coords.longitude)
+			};
+		}
+		function hidePosition(position) {
+			alert('User denied the access of the position. Now we trying to get your location through your IP address.');
+			ipPosition();
+		}
+		function ipPosition(){
+			$.get("http://ipinfo.io", function (response) {
+				var loc = response.loc.split(',');
+				pos = {
+					lat: parseFloat(loc[0]),
+					lng: parseFloat(loc[1])
+				};
+			}, "jsonp");
+		}
+		getLocation();
+
+		var markers = [];
+		var getMarkerUniqueId= function(lat, lng) {
+			return lat + '_' + lng;
+		}
+		function addMarker(location) { // Adds a marker to the map and push to the array.
+			var markerId = getMarkerUniqueId(location.lat, location.lng); // that will be used to cache this marker in markers object.
+			var marker = new google.maps.Marker({
+				position: location,
+				map: map,
+				animation: google.maps.Animation.DROP,
+				id: markerId
+			});
+			markers[markerId] = marker;
+		}
+		var removeMarker = function(marker, markerId) {
+			marker.setMap(null); // set markers setMap to null to remove it from map
+			delete markers[markerId]; // delete marker instance from markers object
+		};
+
+		var socket = io();
+		$(document).ready(function(){
+			check_pos = setInterval(function(){ //create a loop and wait for the response
+				if(typeof pos != 'undefined'){ //while the position is not defined the loop is checking every half seconds
+					socket.emit('new_user', {pos: pos});
+					clearInterval(check_pos);
+				}
+			}, 500);
+			socket.on('already', function(data){
+				$.each( data.visitors, function( key, pos ) {
+					addMarker(pos);
+				});
+			});
+			socket.on('connected', function(data){
+				$("#users_count").html("<strong>" + data.users_count +"</strong>" + " connected users");
+				$("#users_count").css({'visibility': 'visible'});
+				addMarker(data.pos);
+			});
+			socket.on('disconnected', function(data){
+				//we can now delete this position:
+				var markerId = getMarkerUniqueId(data.del.lat, data.del.lng); // get marker id by using clicked point's coordinate
+				var marker = markers[markerId]; // find marker
+				removeMarker(marker, markerId); // remove it
+				$("#users_count").html("<strong>" + data.users_count +"</strong>" + " connected users");
+			});
+		});
+		</script>
+	</body>
+
+</html>

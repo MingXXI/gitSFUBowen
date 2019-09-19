@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<!-- Head -->
+<head>
+<title>DiningPal</title>
+<!-- Meta-Tags -->
+<meta http-equiv="refresh" content="3;url=/" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="keywords" content="Existing Login Form Widget Responsive, Login Form Web Template, Flat Pricing Tables, Flat Drop-Downs, Sign-Up Web Templates, Flat Web Templates, Login Sign-up Responsive Web Template, Smartphone Compatible Web Template, Free Web Designs for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<!-- //Meta-Tags -->
+
+<link href="login/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+
+<!-- Style --> <link rel="stylesheet" href="login/css/style.css" type="text/css" media="all">
+
+
+</head>
+<!-- //Head -->
+
+<!-- Body -->
+<body>
+
+				<div class="box" id="box">
+				   <div class="box_content_center"  style='height:230px; '>
+					   <div class="menu_box_list">
+						   <ul>
+							   <li><a href="../startpage.html#home" class="scroll">Home</a></li>
+<!-- 							   <li class="active"><a href="../startpage.html#about" class="scroll">About</a></li>
+							   <li><a href="../startpage.html#contact" class="scroll">Contact</a></li> -->
+							</ul>
+						</div>
+						<a class="boxclose" id="boxclose"><img src="images/close.png" alt=""/></a>
+					  </div>
+					</div>
+					<script type="text/javascript" src="js/easing.js"></script>
+					    <script type="text/javascript">
+								var $ = jQuery.noConflict();
+									$(function() {
+										$('#activator').click(function(){
+												$('#box').animate({'top':'0px'},500);
+										});
+										$('#boxclose').click(function(){
+												$('#box').animate({'top':'-700px'},500);
+										});
+									});
+									$(document).ready(function(){
+
+									//Hide (Collapse) the toggle containers on load
+									$(".toggle_container").hide();
+
+									//Switch the "Open" and "Close" state per click then slide up/down (depending on open/close state)
+									$(".trigger").click(function(){
+										$(this).toggleClass("active").next().slideToggle("slow");
+										return false; //Prevent the browser jump to the link anchor
+									});
+
+									});
+						</script>
+
+  <div class="w3layoutscontaineragileits" style='margin-top: 13%'>
+    <p style='font-size:50px'> <%= message %><br>
+    Back to home page in 3 seconds...</p>
+  </div>
+
+
+  <div class="w3footeragile">
+    <p> &copy; 2019 DiningPal Team. All Rights Reserved | Design by Team Segfault</p>
+  </div>
+
+
+
+
+</body>
+<!-- //Body -->
+
+</html>

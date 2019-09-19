@@ -1,0 +1,50 @@
+.row {
+    max-width: 1000px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin: 0 auto;
+  }
+
+.top {
+    padding: 0px;
+    max-width: 100%;
+    position: fixed;
+    width: 100%;
+}
+
+  /* Clearfix */
+.row::before,
+.row::after {
+  display: table;
+  content: '';
+}
+
+.row::after {
+  clear: both;
+}
+
+.col-6, .col-12 {
+    float: left;
+    padding-left: 1.04166666%;
+    padding-right: 1.04166666%;
+    margin: 1%;
+    width: 100%
+}
+
+.col-6 {
+    padding: 20px;
+    background-color: white;
+}
+
+@media only screen and (min-width: 640px) {
+    /* 6 columns */
+    .col-6 {
+        width: 48%;
+        /*float: none;*/
+    }
+
+    /* 12 columns */
+    .col-12 {
+        width: 100%;
+    }
+}
